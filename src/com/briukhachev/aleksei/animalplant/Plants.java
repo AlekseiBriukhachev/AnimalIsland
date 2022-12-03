@@ -6,8 +6,8 @@ public class Plants extends Organism {
         super(weight);
     }
 
-    @Override
-    public void run() {
-
-    }
+//    @Override
+//    public void run() {
+//
+//    }
 }
