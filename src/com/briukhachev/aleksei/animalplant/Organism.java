@@ -1,18 +1,18 @@
 package com.briukhachev.aleksei.animalplant;
 
-public abstract class Organism {
+public abstract class Organism<T> {
     private double weight;
     private double foodQuantity;
     private int speed;
     private boolean isEatable;
     private int probabilityBeEaten;
 
-    public Organism(double weight, boolean isEatable) {
+    private Organism(double weight, boolean isEatable) {
         this.weight = weight;
         this.isEatable = isEatable;
     }
 
-    public Organism(double weight, int speed, double foodQuantity, boolean isEatable) {
+    private Organism(double weight, int speed, double foodQuantity, boolean isEatable) {
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
@@ -66,4 +66,8 @@ public abstract class Organism {
                 ", speed=" + speed +
                 '}';
     }
+
+//    public Object<T super Organism> createNew(){
+//        return new Organism<>();
+//    }
 }
