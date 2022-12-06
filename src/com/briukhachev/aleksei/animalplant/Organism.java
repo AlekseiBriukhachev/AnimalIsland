@@ -1,73 +1,18 @@
 package com.briukhachev.aleksei.animalplant;
 
-public abstract class Organism<T> {
-    private double weight;
-    private double foodQuantity;
-    private int speed;
-    private boolean isEatable;
-    private int probabilityBeEaten;
+import com.briukhachev.aleksei.Location;
 
-    private Organism(double weight, boolean isEatable) {
-        this.weight = weight;
-        this.isEatable = isEatable;
+public abstract class Organism{
+    private int x;
+    private int y;
+
+
+    private Location location = new Location(x, y);
+
+    public Location getLocation() {
+        return location;
     }
-
-    private Organism(double weight, int speed, double foodQuantity, boolean isEatable) {
-        this.weight = weight;
-        this.speed = speed;
-        this.foodQuantity = foodQuantity;
+    public void setLocation(Location location) {
+        this.location = location;
     }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public double getFoodQuantity() {
-        return foodQuantity;
-    }
-
-    public void setFoodQuantity(double foodQuantity) {
-        this.foodQuantity = foodQuantity;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public boolean isEatable() {
-        return isEatable;
-    }
-
-    public void setEatable(boolean eatable) {
-        isEatable = eatable;
-    }
-
-    public int getProbabilityBeEaten() {
-        return probabilityBeEaten;
-    }
-
-    public void setProbabilityBeEaten(int probabilityBeEaten) {
-        this.probabilityBeEaten = probabilityBeEaten;
-    }
-
-    @Override
-    public String toString() {
-        return "Organism{" +
-                "weight=" + weight +
-                ", foodQuantity=" + foodQuantity +
-                ", speed=" + speed +
-                '}';
-    }
-
-//    public Object<T super Organism> createNew(){
-//        return new Organism<>();
-//    }
 }

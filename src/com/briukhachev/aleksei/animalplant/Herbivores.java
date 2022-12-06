@@ -1,17 +1,24 @@
 package com.briukhachev.aleksei.animalplant;
 
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 public abstract class Herbivores extends Animal {
-
-    public Herbivores(double weight, int speed, double foodQuantity, boolean isEatable) {
-        super(weight, speed, foodQuantity, isEatable);
+    private int eatProbability;
+    @Override
+    public void eat(List<? extends Organism> organisms) {
+        for (Organism  organism: organisms) {
+            int probability = ThreadLocalRandom.current().nextInt(eatProbability);
+            if (organism.getLocation() == this.getLocation()) {
+                if (organism instanceof Plants
+                        || (organism instanceof Herbivores && probability > 0 && probability <= eatProbability)){
+                    organisms.remove(organism);
+                }
+            }
+        }
     }
-    public void eat(Organism food) {
-    }
 
-    public void born(Animal child) {
+    public void setEatProbability(int eatProbability) {
+        this.eatProbability = eatProbability;
     }
-
-    public void move() {
-    }
-
 }

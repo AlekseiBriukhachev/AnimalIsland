@@ -1,20 +1,20 @@
 package com.briukhachev.aleksei.animalplant;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Predator extends Animal {
-
-
-    public Predator(double weight, int speed, double foodQuantity, boolean isEatable) {
-        super(weight, speed, foodQuantity, isEatable);
-    }
-
+    private int eatProbability;
     @Override
-    public boolean eat(Organism organism) {
-        if (organism.isEatable()){
-            int probability = ThreadLocalRandom.current().nextInt(this.getProbabilityBeEaten());
-//            if (probability > 0 && probability <= 60)
+    public void eat(List<? extends Organism> organisms) {
+        for (Organism  organism: organisms) {
+            int probability = ThreadLocalRandom.current().nextInt(eatProbability);
+            if (organism.getLocation() == this.getLocation()) {
+                if (organism instanceof Herbivores
+                        || (organism instanceof Predator && probability > 0 && probability <= eatProbability)){
+                    organisms.remove(organism);
+                }
+            }
         }
-        return true;
     }
 }
