@@ -24,4 +24,5 @@ public class Model {
     public Location[][] getSimLocation() {
         return simLocation;
     }
+
 }
