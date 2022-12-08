@@ -21,6 +21,25 @@ public class Params {
     private int duckCount = 200;
     private int caterpillarCount = 1000;
     private int plantCount = 200;
+    private int width = 100;
+    private int height= 20;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     private Map<Object, List<Integer>> organismParams = new HashMap<>();
 
     public Map<Object, List<Integer>> getOrganismParams() {

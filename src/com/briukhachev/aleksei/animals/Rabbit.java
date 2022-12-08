@@ -36,7 +36,7 @@ public class Rabbit extends Herbivores {
         for (Rabbit duck : rabbits) {
             int x = ThreadLocalRandom.current().nextInt(speed);
             int y = ThreadLocalRandom.current().nextInt(speed);
-            duck.setLocation(new Location(x, y));
+            duck.setLocation(new Location());
         }
 
     }

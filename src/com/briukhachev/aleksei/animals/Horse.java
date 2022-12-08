@@ -35,7 +35,7 @@ public class Horse extends Herbivores {
         for (Horse horse : horses) {
             int x = ThreadLocalRandom.current().nextInt(speed);
             int y = ThreadLocalRandom.current().nextInt(speed);
-            horse.setLocation(new Location(x, y));
+            horse.setLocation(new Location());
         }
 
     }

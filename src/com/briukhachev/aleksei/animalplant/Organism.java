@@ -7,7 +7,7 @@ public abstract class Organism{
     private int y;
 
 
-    private Location location = new Location(x, y);
+    private Location location = new Location();
 
     public Location getLocation() {
         return location;

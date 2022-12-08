@@ -35,7 +35,7 @@ public class Deer extends Herbivores {
         for (Deer deer : deerList) {
             int x = ThreadLocalRandom.current().nextInt(speed);
             int y = ThreadLocalRandom.current().nextInt(speed);
-            deer.setLocation(new Location(x, y));
+            deer.setLocation(new Location());
         }
 
     }
