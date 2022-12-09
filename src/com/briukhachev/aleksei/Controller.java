@@ -6,6 +6,7 @@ import com.briukhachev.aleksei.model.Model;
 public class Controller {
     private Model model;
     private View view;
+    private boolean isStarted = false;
 
     public Controller(Model model) {
         this.model = model;
@@ -21,5 +22,14 @@ public class Controller {
     }
     public Location[][] getSimLocations(){
         return model.getSimLocation();
+    }
+
+    public void startSimulation() {
+        isStarted = true;
+        model.simulate();
+    }
+
+    public boolean isStarted() {
+        return isStarted;
     }
 }

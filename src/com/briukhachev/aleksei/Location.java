@@ -1,13 +1,15 @@
 package com.briukhachev.aleksei;
 
+import com.briukhachev.aleksei.model.Model;
+
 import java.awt.*;
 
 public class Location {
 
-
-    private AnimalImage image = AnimalImage.RABBIT;
+    private AnimalImage image;
 
     public Location() {
+        image = AnimalImage.EMPTY;
     }
 
     public void setImage(AnimalImage image) {

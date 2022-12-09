@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Objects;
 
 public class View extends JPanel implements ActionListener {
     private static final int LOCATION_MARINE = 2;
@@ -22,16 +21,17 @@ public class View extends JPanel implements ActionListener {
     private final JButton startBtn = new JButton("Start");
     private final JButton stopBtn = new JButton("Stop");
     private final JButton restartBtn = new JButton("Restart");
-    private final JButton some = new JButton("Some");
-    private final JLabel islandWight = new JLabel("Width: ");
-    private final JLabel islandHeight = new JLabel("Height: ");
+    private final JButton confirmBtn = new JButton("Confirm");
+    private final JLabel islandWightLabel = new JLabel("Width: ");
+    private final JLabel islandHeightLabel = new JLabel("Height: ");
     private final JLabel somelab = new JLabel("SomeLabel");
     private final JTextField widthInp = new JTextField(5);
     private final JTextField heightInp = new JTextField(5);
-    private final String[] animalString = {"Bear", "Boar", "Buffalo", "Caterpillar", "Deer", "Duck", "Eagle", "Fox",
-    "Goat", "Horse", "Mouse", "Rabbit", "Sheep", "Snake", "Wolf", "Plant", "Empty"};
+    private final String[] animalString = {"bear", "boar", "buffalo", "caterpillar", "deer", "duck", "eagle", "fox",
+    "goat", "horse", "mouse", "rabbit", "sheep", "snake", "wolf", "plant", "empty"};
     private final JComboBox animalList =new JComboBox<>(animalString);
     private final JPanel hut = new JPanel();
+
     public View(Controller controller) {
         this.controller = controller;
         try {
@@ -42,28 +42,28 @@ public class View extends JPanel implements ActionListener {
     }
 
     public void init() {
+
         animalList.setSelectedIndex(4);
-//        animalList.addActionListener(this);
         animalList.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
 //                JComboBox cb = (JComboBox) e.getSource();
                 String animalName = e.getSource().toString();
-                if ((animalName).equalsIgnoreCase("bear")) location.setImage(AnimalImage.BEAR);
-                else if (animalName.equalsIgnoreCase("boar")) location.setImage(AnimalImage.BOAR);
-                else if (animalName.equalsIgnoreCase("buffalo")) location.setImage(AnimalImage.BUFFALO);
-                else if (animalName.equalsIgnoreCase("caterpillar")) location.setImage(AnimalImage.CATERPILLAR);
-                else if (animalName.equalsIgnoreCase("deer")) location.setImage(AnimalImage.DEER);
-                else if (animalName.equalsIgnoreCase("duck")) location.setImage(AnimalImage.DUCK);
-                else if (animalName.equalsIgnoreCase("eagle")) location.setImage(AnimalImage.EAGLE);
-                else if (animalName.equalsIgnoreCase("fox")) location.setImage(AnimalImage.FOX);
-                else if (animalName.equalsIgnoreCase("goat")) location.setImage(AnimalImage.GOAT);
-                else if (animalName.equalsIgnoreCase("horse")) location.setImage(AnimalImage.HORSE);
-                else if (animalName.equalsIgnoreCase("rabbit")) location.setImage(AnimalImage.RABBIT);
-                else if (animalName.equalsIgnoreCase("sheep")) location.setImage(AnimalImage.SHEEP);
-                else if (animalName.equalsIgnoreCase("snake")) location.setImage(AnimalImage.SNAKE);
-                else if (animalName.equalsIgnoreCase("wolf")) location.setImage(AnimalImage.WOLF);
-                else if (animalName.equalsIgnoreCase("plant")) location.setImage(AnimalImage.PLANT);
+                if ((animalName).equals("bear")) location.setImage(AnimalImage.BEAR);
+                else if (animalName.equals("boar")) location.setImage(AnimalImage.BOAR);
+                else if (animalName.equals("buffalo")) location.setImage(AnimalImage.BUFFALO);
+                else if (animalName.equals("caterpillar")) location.setImage(AnimalImage.CATERPILLAR);
+                else if (animalName.equals("deer")) location.setImage(AnimalImage.DEER);
+                else if (animalName.equals("duck")) location.setImage(AnimalImage.DUCK);
+                else if (animalName.equals("eagle")) location.setImage(AnimalImage.EAGLE);
+                else if (animalName.equals("fox")) location.setImage(AnimalImage.FOX);
+                else if (animalName.equals("goat")) location.setImage(AnimalImage.GOAT);
+                else if (animalName.equals("horse")) location.setImage(AnimalImage.HORSE);
+                else if (animalName.equals("rabbit")) location.setImage(AnimalImage.RABBIT);
+                else if (animalName.equals("sheep")) location.setImage(AnimalImage.SHEEP);
+                else if (animalName.equals("snake")) location.setImage(AnimalImage.SNAKE);
+                else if (animalName.equals("wolf")) location.setImage(AnimalImage.WOLF);
+                else if (animalName.equals("plant")) location.setImage(AnimalImage.PLANT);
                 else location.setImage(AnimalImage.EMPTY);
                 repaint();
             }
@@ -79,22 +79,25 @@ public class View extends JPanel implements ActionListener {
         controlBtnPanel.add(stopBtn);
         controlBtnPanel.add(restartBtn);
 
-        some.setActionCommand("");
-        some.addActionListener(this);
-        parameterPanel.setLayout(new GridLayout(0, 4));
-        parameterPanel.add(islandHeight);
+        stopBtn.setActionCommand("");
+        stopBtn.addActionListener(this);
+        confirmBtn.setActionCommand("confirm");
+        confirmBtn.addActionListener(this);
+        parameterPanel.setLayout(new GridLayout(10, 4));
+        parameterPanel.add(islandHeightLabel);
         parameterPanel.add(heightInp);
-        parameterPanel.add(islandWight);
+        parameterPanel.add(islandWightLabel);
         parameterPanel.add(widthInp);
         parameterPanel.add(somelab);
         parameterPanel.add(animalList);
+        parameterPanel.add(confirmBtn);
 
 
         statistic.add(somelab);
 
         frame.getContentPane().add(controlBtnPanel, BorderLayout.NORTH);
         frame.getContentPane().add(controller.getView());
-        frame.getContentPane().add(parameterPanel, BorderLayout.WEST);
+//        frame.getContentPane().add(parameterPanel, BorderLayout.WEST);
         frame.getContentPane().add(statistic, BorderLayout.SOUTH);
         frame.pack();
 
@@ -131,6 +134,13 @@ public class View extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getActionCommand().equals("confirm")) {
+            params.setWidth(Integer.parseInt(widthInp.getText()));
+            widthInp.setText(" ");
+            repaint();
+        }
+        else if (e.getActionCommand().equals("start")){
+            controller.startSimulation();
+        }
     }
 }

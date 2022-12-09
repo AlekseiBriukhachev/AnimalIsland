@@ -25,4 +25,7 @@ public class Model {
         return simLocation;
     }
 
+    public void simulate() {
+        
+    }
 }
