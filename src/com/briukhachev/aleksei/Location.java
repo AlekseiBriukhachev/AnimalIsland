@@ -5,11 +5,18 @@ import com.briukhachev.aleksei.model.Model;
 import java.awt.*;
 
 public class Location {
+    private int x;
+    private int y;
 
     private AnimalImage image;
 
     public Location() {
         image = AnimalImage.EMPTY;
+    }
+
+    public Location(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void setImage(AnimalImage image) {
@@ -19,6 +26,7 @@ public class Location {
     public AnimalImage getImage() {
         return image;
     }
+
     public Image chooseImage(AnimalImage animalImage) {
         return switch (animalImage) {
             case BEAR -> Toolkit.getDefaultToolkit().getImage("res/Bear.png");

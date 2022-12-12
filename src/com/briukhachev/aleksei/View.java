@@ -1,5 +1,7 @@
 package com.briukhachev.aleksei;
 
+import com.briukhachev.aleksei.model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ import java.awt.event.ItemListener;
 public class View extends JPanel implements ActionListener {
     private static final int LOCATION_MARINE = 2;
     private Controller controller;
+    private Model model;
     private Location location = new Location();
     private Params params = new Params();
     private final int LOCATION_SIZE = (1500 / params.getWidth()) - LOCATION_MARINE;
@@ -97,8 +100,8 @@ public class View extends JPanel implements ActionListener {
 
         frame.getContentPane().add(controlBtnPanel, BorderLayout.NORTH);
         frame.getContentPane().add(controller.getView());
-//        frame.getContentPane().add(parameterPanel, BorderLayout.WEST);
-        frame.getContentPane().add(statistic, BorderLayout.SOUTH);
+        frame.getContentPane().add(parameterPanel, BorderLayout.WEST);
+//        frame.getContentPane().add(statistic, BorderLayout.SOUTH);
         frame.pack();
 
         frame.setTitle("Animal Island Simulation");
@@ -137,6 +140,7 @@ public class View extends JPanel implements ActionListener {
         if (e.getActionCommand().equals("confirm")) {
             params.setWidth(Integer.parseInt(widthInp.getText()));
             widthInp.setText(" ");
+            controller.setSimLocation(new Location[params.getWidth()][params.getHeight()]);
             repaint();
         }
         else if (e.getActionCommand().equals("start")){

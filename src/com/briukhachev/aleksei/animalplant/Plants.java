@@ -12,15 +12,15 @@ public class Plants extends Organism {
     private Params params = new Params();
     private List<Plants> plants = new ArrayList<>();
 
-    private Plants(double weight, int x, int y) {
+    private Plants(double weight) {
         this.weight = weight;
-        this.x = x;
-        this.y = y;
+//        this.x = x;
+//        this.y = y;
     }
 
-    public List<Plants> getNewPlant(Plants parent) {
+    public List<Plants> getNewPlant() {
         if (plants.size() < params.getPlantCount()) {
-            plants.add(new Plants(1d, parent.getX(), parent.getY()));
+            plants.add(new Plants(1));
             return plants;
         }
         return null;
@@ -36,6 +36,9 @@ public class Plants extends Organism {
 
     public int getY() {
         return y;
+    }
+    public void lifeCycle(){
+        getNewPlant();
     }
 
 }

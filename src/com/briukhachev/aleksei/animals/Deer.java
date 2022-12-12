@@ -24,7 +24,7 @@ public class Deer extends Herbivores {
     @Override
     public List<Deer> createNew() {
         if (deerList.size() < params.getDeerCount()) {
-            deerList.add(new Deer(300, 20, 50));
+            deerList.add(new Deer(300, 4, 50));
             return deerList;
         }
         return null;
@@ -66,6 +66,11 @@ public class Deer extends Herbivores {
 
     public void setFoodQuantity(double foodQuantity) {
         this.foodQuantity = foodQuantity;
+    }
+    public void lifeCycle() {
+        createNew();
+        move();
+//            eat();
     }
 }
 

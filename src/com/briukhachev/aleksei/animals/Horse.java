@@ -24,7 +24,7 @@ public class Horse extends Herbivores {
     @Override
     public List<Horse> createNew() {
         if (horses.size() < params.getHorseCount()){
-            horses.add(new Horse(400, 20, 60));
+            horses.add(new Horse(400, 4, 60));
             return horses;
         }
         return null;
@@ -66,5 +66,10 @@ public class Horse extends Herbivores {
 
     public void setFoodQuantity(double foodQuantity) {
         this.foodQuantity = foodQuantity;
+    }
+    public void lifeCycle() {
+        createNew();
+        move();
+//            eat();
     }
 }

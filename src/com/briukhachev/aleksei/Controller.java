@@ -23,6 +23,9 @@ public class Controller {
     public Location[][] getSimLocations(){
         return model.getSimLocation();
     }
+    public void setSimLocation(Location[][] simLocation) {
+        model.setSimLocation(simLocation);
+    }
 
     public void startSimulation() {
         isStarted = true;

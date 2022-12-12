@@ -25,7 +25,7 @@ public class Boar extends Herbivores {
     @Override
     public List<Boar> createNew() {
         if (boars.size() < params.getDuckCount()){
-            boars.add(new Boar(400, 2, 50d));
+            boars.add(new Boar(400, 2, 50));
             return boars;
         }
         return null;
@@ -67,5 +67,10 @@ public class Boar extends Herbivores {
 
     public void setFoodQuantity(double foodQuantity) {
         this.foodQuantity = foodQuantity;
+    }
+    public void lifeCycle() {
+        createNew();
+        move();
+//            eat();
     }
 }

@@ -68,5 +68,10 @@ public class Rabbit extends Herbivores {
     public void setFoodQuantity(double foodQuantity) {
         this.foodQuantity = foodQuantity;
     }
+    public void lifeCycle() {
+        createNew();
+        move();
+//            eat();
+    }
 }
 

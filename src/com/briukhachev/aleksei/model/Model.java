@@ -6,6 +6,10 @@ import com.briukhachev.aleksei.Params;
 import com.briukhachev.aleksei.animalplant.Animal;
 import com.briukhachev.aleksei.animals.Wolf;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Model {
     private Params params = new Params();
     private Location[][] simLocation = new Location[params.getWidth()][params.getHeight()];
@@ -25,7 +29,12 @@ public class Model {
         return simLocation;
     }
 
+    public void setSimLocation(Location[][] simLocation) {
+        this.simLocation = simLocation;
+    }
+
     public void simulate() {
-        
+        ScheduledExecutorService scheduleSimCycle = Executors.newScheduledThreadPool(5);
+        scheduleSimCycle.scheduleAtFixedRate(new Cycle(), 0, 500, TimeUnit.MILLISECONDS);
     }
 }
