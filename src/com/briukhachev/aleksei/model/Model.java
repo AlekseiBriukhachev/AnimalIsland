@@ -1,7 +1,6 @@
 package com.briukhachev.aleksei.model;
 
 
-import com.briukhachev.aleksei.Location;
 import com.briukhachev.aleksei.service.Params;
 
 import java.util.concurrent.Executors;

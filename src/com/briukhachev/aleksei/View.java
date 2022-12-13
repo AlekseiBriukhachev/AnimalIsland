@@ -1,5 +1,7 @@
 package com.briukhachev.aleksei;
 
+import com.briukhachev.aleksei.animalfactory.OrganismType;
+import com.briukhachev.aleksei.model.Location;
 import com.briukhachev.aleksei.model.Model;
 import com.briukhachev.aleksei.service.Params;
 
@@ -53,22 +55,22 @@ public class View extends JPanel implements ActionListener {
             public void itemStateChanged(ItemEvent e) {
 //                JComboBox cb = (JComboBox) e.getSource();
                 String animalName = e.getSource().toString();
-                if ((animalName).equals("bear")) location.setImage(AnimalImage.BEAR);
-                else if (animalName.equals("boar")) location.setImage(AnimalImage.BOAR);
-                else if (animalName.equals("buffalo")) location.setImage(AnimalImage.BUFFALO);
-                else if (animalName.equals("caterpillar")) location.setImage(AnimalImage.CATERPILLAR);
-                else if (animalName.equals("deer")) location.setImage(AnimalImage.DEER);
-                else if (animalName.equals("duck")) location.setImage(AnimalImage.DUCK);
-                else if (animalName.equals("eagle")) location.setImage(AnimalImage.EAGLE);
-                else if (animalName.equals("fox")) location.setImage(AnimalImage.FOX);
-                else if (animalName.equals("goat")) location.setImage(AnimalImage.GOAT);
-                else if (animalName.equals("horse")) location.setImage(AnimalImage.HORSE);
-                else if (animalName.equals("rabbit")) location.setImage(AnimalImage.RABBIT);
-                else if (animalName.equals("sheep")) location.setImage(AnimalImage.SHEEP);
-                else if (animalName.equals("snake")) location.setImage(AnimalImage.SNAKE);
-                else if (animalName.equals("wolf")) location.setImage(AnimalImage.WOLF);
-                else if (animalName.equals("plant")) location.setImage(AnimalImage.PLANT);
-                else location.setImage(AnimalImage.EMPTY);
+                if ((animalName).equals("bear")) location.setImage(OrganismType.BEAR);
+                else if (animalName.equals("boar")) location.setImage(OrganismType.BOAR);
+                else if (animalName.equals("buffalo")) location.setImage(OrganismType.BUFFALO);
+                else if (animalName.equals("caterpillar")) location.setImage(OrganismType.CATERPILLAR);
+                else if (animalName.equals("deer")) location.setImage(OrganismType.DEER);
+                else if (animalName.equals("duck")) location.setImage(OrganismType.DUCK);
+                else if (animalName.equals("eagle")) location.setImage(OrganismType.EAGLE);
+                else if (animalName.equals("fox")) location.setImage(OrganismType.FOX);
+                else if (animalName.equals("goat")) location.setImage(OrganismType.GOAT);
+                else if (animalName.equals("horse")) location.setImage(OrganismType.HORSE);
+                else if (animalName.equals("rabbit")) location.setImage(OrganismType.RABBIT);
+                else if (animalName.equals("sheep")) location.setImage(OrganismType.SHEEP);
+                else if (animalName.equals("snake")) location.setImage(OrganismType.SNAKE);
+                else if (animalName.equals("wolf")) location.setImage(OrganismType.WOLF);
+                else if (animalName.equals("plant")) location.setImage(OrganismType.PLANT);
+                else location.setImage(OrganismType.EMPTY);
                 repaint();
             }
         });

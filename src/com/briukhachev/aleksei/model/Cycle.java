@@ -1,7 +1,7 @@
 package com.briukhachev.aleksei.model;
 
-import com.briukhachev.aleksei.animalplant.Plants;
-import com.briukhachev.aleksei.animals.*;
+import com.briukhachev.aleksei.animalfactory.Plants;
+import com.briukhachev.aleksei.animalfactory.animals.*;
 
 public class Cycle implements Runnable {
     private Bear bear;

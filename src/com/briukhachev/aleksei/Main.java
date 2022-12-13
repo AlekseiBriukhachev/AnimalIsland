@@ -1,11 +1,7 @@
 package com.briukhachev.aleksei;
 
 
-import com.briukhachev.aleksei.animalplant.Animal;
-import com.briukhachev.aleksei.animals.Wolf;
 import com.briukhachev.aleksei.model.Model;
-
-import javax.swing.*;
 
 public class Main {
 
