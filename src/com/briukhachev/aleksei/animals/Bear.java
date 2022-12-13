@@ -1,9 +1,8 @@
 package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.Location;
-import com.briukhachev.aleksei.Params;
+import com.briukhachev.aleksei.service.Params;
 import com.briukhachev.aleksei.animalplant.Animal;
-import com.briukhachev.aleksei.animalplant.Organism;
 import com.briukhachev.aleksei.animalplant.Predator;
 
 import java.util.ArrayList;

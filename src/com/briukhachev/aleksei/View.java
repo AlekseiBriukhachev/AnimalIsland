@@ -1,6 +1,7 @@
 package com.briukhachev.aleksei;
 
 import com.briukhachev.aleksei.model.Model;
+import com.briukhachev.aleksei.service.Params;
 
 import javax.swing.*;
 import java.awt.*;

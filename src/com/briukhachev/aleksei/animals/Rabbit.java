@@ -3,7 +3,7 @@ package com.briukhachev.aleksei.animals;
 import com.briukhachev.aleksei.animalplant.Herbivores;
 
 import com.briukhachev.aleksei.Location;
-import com.briukhachev.aleksei.Params;
+import com.briukhachev.aleksei.service.Params;
 
 import java.util.ArrayList;
 import java.util.List;

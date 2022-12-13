@@ -2,9 +2,7 @@ package com.briukhachev.aleksei.model;
 
 
 import com.briukhachev.aleksei.Location;
-import com.briukhachev.aleksei.Params;
-import com.briukhachev.aleksei.animalplant.Animal;
-import com.briukhachev.aleksei.animals.Wolf;
+import com.briukhachev.aleksei.service.Params;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
