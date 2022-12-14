@@ -1,5 +1,5 @@
 package com.briukhachev.aleksei.animalfactory;
 
-public abstract class Predator extends Animal {
-
+public interface Predator {
+    void eatMeat();
 }

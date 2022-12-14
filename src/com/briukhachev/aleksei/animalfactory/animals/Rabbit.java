@@ -1,15 +1,17 @@
 package com.briukhachev.aleksei.animalfactory.animals;
 
+import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
 
-import com.briukhachev.aleksei.model.Location;
-import com.briukhachev.aleksei.service.Params;
+public class Rabbit extends Animal implements Herbivores {
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+    public Rabbit(double weight, int speed, double foodQuantity) {
+        super(weight, speed, foodQuantity);
+    }
 
-public class Rabbit extends Herbivores {
+    @Override
+    public void eatPlants() {
 
+    }
 }
 

@@ -1,13 +1,16 @@
 package com.briukhachev.aleksei.animalfactory.animals;
 
-import com.briukhachev.aleksei.model.Location;
-import com.briukhachev.aleksei.service.Params;
+import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+public class Horse extends Animal implements Herbivores {
 
-public class Horse extends Herbivores {
+    public Horse(double weight, int speed, double foodQuantity) {
+        super(weight, speed, foodQuantity);
+    }
 
+    @Override
+    public void eatPlants() {
+
+    }
 }
