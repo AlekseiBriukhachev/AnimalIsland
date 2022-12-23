@@ -5,13 +5,26 @@ import com.briukhachev.aleksei.animalfactory.Herbivores;
 
 public class Deer extends Animal implements Herbivores {
 
+    private final double weight;
+    private final int speed;
+    private final double foodQuantity;
+
     public Deer(double weight, int speed, double foodQuantity) {
-        super(weight, speed, foodQuantity);
+        this.weight = weight;
+        this.speed = speed;
+        this.foodQuantity = foodQuantity;
     }
 
-    @Override
-    public void eatPlants() {
+    public double getWeight() {
+        return weight;
+    }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public double getFoodQuantity() {
+        return foodQuantity;
     }
 }
 

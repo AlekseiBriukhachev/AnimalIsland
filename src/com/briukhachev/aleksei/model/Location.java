@@ -1,6 +1,6 @@
 package com.briukhachev.aleksei.model;
 
-import com.briukhachev.aleksei.animalfactory.OrganismType;
+import com.briukhachev.aleksei.animalfactory.AnimalType;
 
 import java.awt.*;
 
@@ -8,10 +8,10 @@ public class Location {
     private int x;
     private int y;
 
-    private OrganismType image;
+    private AnimalType image;
 
     public Location() {
-        image = OrganismType.EMPTY;
+        image = AnimalType.EMPTY;
     }
 
     public Location(int x, int y) {
@@ -19,15 +19,15 @@ public class Location {
         this.y = y;
     }
 
-    public void setImage(OrganismType image) {
+    public void setImage(AnimalType image) {
         this.image = image;
     }
 
-    public OrganismType getImage() {
+    public AnimalType getImage() {
         return image;
     }
 
-    public Image chooseImage(OrganismType animalType) {
+    public Image chooseImage(AnimalType animalType) {
         return switch (animalType) {
             case BEAR -> Toolkit.getDefaultToolkit().getImage("res/Bear.png");
             case BOAR -> Toolkit.getDefaultToolkit().getImage("res/Boar.png");

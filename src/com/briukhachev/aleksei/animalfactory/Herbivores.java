@@ -1,5 +1,7 @@
 package com.briukhachev.aleksei.animalfactory;
 
 public interface Herbivores {
-    void eatPlants();
+    default void eatPlants(){
+        //TODO
+    }
 }

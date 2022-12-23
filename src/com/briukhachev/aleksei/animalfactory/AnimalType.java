@@ -2,7 +2,7 @@ package com.briukhachev.aleksei.animalfactory;
 
 
 
-public enum OrganismType {
+public enum AnimalType {
     BEAR,
     BOAR,
     BUFFALO,
@@ -18,7 +18,7 @@ public enum OrganismType {
     SHEEP,
     SNAKE,
     WOLF,
-    PLANT,
-    EMPTY
+//    PLANT,
+//    EMPTY
 }
 

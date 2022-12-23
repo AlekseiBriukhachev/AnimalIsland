@@ -1,5 +1,7 @@
 package com.briukhachev.aleksei.animalfactory;
 
 public interface Predator {
-    void eatMeat();
+    default void eatMeat(){
+        //TODO
+    }
 }

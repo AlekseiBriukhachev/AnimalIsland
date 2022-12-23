@@ -6,17 +6,25 @@ import com.briukhachev.aleksei.animalfactory.Predator;
 
 public class Mouse extends Animal implements Predator, Herbivores {
 
+    private final double weight;
+    private final int speed;
+    private final double foodQuantity;
+
     public Mouse(double weight, int speed, double foodQuantity) {
-        super(weight, speed, foodQuantity);
+        this.weight = weight;
+        this.speed = speed;
+        this.foodQuantity = foodQuantity;
     }
 
-    @Override
-    public void eatPlants() {
-
+    public double getWeight() {
+        return weight;
     }
 
-    @Override
-    public void eatMeat() {
+    public int getSpeed() {
+        return speed;
+    }
 
+    public double getFoodQuantity() {
+        return foodQuantity;
     }
 }
