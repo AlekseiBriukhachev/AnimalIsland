@@ -4,16 +4,22 @@ import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
 import com.briukhachev.aleksei.animalfactory.Predator;
 
+import java.awt.*;
+
 public class Boar extends Animal implements Predator, Herbivores {
 
     private final double weight;
     private final int speed;
     private final double foodQuantity;
+    public static Image image;
+    public static int count;
 
     public Boar(double weight, int speed, double foodQuantity) {
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
+        image = Toolkit.getDefaultToolkit().getImage("res/Boar.png");
+        count++;
     }
 
     public double getWeight() {

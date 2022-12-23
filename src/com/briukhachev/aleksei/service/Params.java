@@ -1,16 +1,18 @@
 package com.briukhachev.aleksei.service;
 
 
+import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.AnimalType;
 import com.briukhachev.aleksei.animalfactory.animals.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Params {
     private int plantWeight;
-    private Map<Class, double[]> animalParams = new HashMap<>();
+    private int islandWidth;
+    private int islandHeight;
+    private Map<Class<? extends Animal>, double[]> animalParams = new HashMap<>();
     private int[][] eatingProbability = new int[][]{
             {0, 0, 0, 0, 10, 15, 60, 80, 60, 70, 15, 10, 40, 0, 0},
             {0,	15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0},
@@ -38,7 +40,7 @@ public class Params {
         animalParams.put(Horse.class, new double[]{400, 20, 4, 60});
         animalParams.put(Deer.class, new double[]{300, 20, 4, 50});
         animalParams.put(Rabbit.class, new double[]{2, 150, 2, 0.45d});
-        animalParams.put(Mouse.class, new double[]{0.05d, 500, 1, 0.01});
+        animalParams.put(Mouse.class, new double[]{0.05d, 500, 1, 0.01d});
         animalParams.put(Goat.class, new double[]{60, 140, 3, 10});
         animalParams.put(Sheep.class, new double[]{70, 140, 3, 15});
         animalParams.put(Boar.class, new double[]{400, 50, 2, 50});
@@ -47,33 +49,37 @@ public class Params {
         animalParams.put(Caterpillar.class, new double[]{0.01d, 1000, 0, 0});
     }
     public int getEatingProbability(AnimalType animalType, AnimalType typeToEat){
-        if (animalType.ordinal() <= 15 && typeToEat.ordinal() <= 16 && animalType.ordinal() != typeToEat.ordinal()) {
+//        if (animalType.ordinal() < 0){
+//            return 0;
+//        }
+//        if (typeToEat.ordinal() > 16)
+        if ( animalType.ordinal() != typeToEat.ordinal()) {
             return eatingProbability[animalType.ordinal()][typeToEat.ordinal()];
         }
         return 0;
     }
-    public double getAnimalWeight(Class clazz){
+    public double getAnimalWeight(Class<? extends Animal> clazz){
         return animalParams.get(clazz)[0];
     }
-    public void setAnimalWeight(Class clazz, double weight){
-        animalParams.get(clazz)[0] = weight;
+    public void setAnimalWeight(Class<? extends Animal> key, double weight){
+        animalParams.get(key)[0] = weight;
     }
-    public double getAnimalPerLocation(Class clazz){
+    public double getAnimalPerLocation(Class<? extends Animal> clazz){
         return animalParams.get(clazz)[1];
     }
-    public void setAnimalPerLocation(Class clazz, int animalNumbers){
-        animalParams.get(clazz)[1] = animalNumbers;
+    public void setAnimalPerLocation(Class<? extends Animal> key, double animalNumbers){
+        animalParams.get(key)[1] = animalNumbers;
     }
-    public double getAnimalSpeed(Class clazz){
+    public double getAnimalSpeed(Class<? extends Animal> clazz){
         return animalParams.get(clazz)[2];
     }
-    public void setAnimalSpeed(Class clazz, int speed){
+    public void setAnimalSpeed(Class<? extends Animal> clazz, double speed){
         animalParams.get(clazz)[2] = speed;
     }
-    public double getAnimalFoodQuantity(Class clazz){
+    public double getAnimalFoodQuantity(Class<? extends Animal> clazz){
         return animalParams.get(clazz)[3];
     }
-    public void setAnimalFoodQuantity(Class clazz, double foodQuantity){
+    public void setAnimalFoodQuantity(Class<? extends Animal> clazz,  double foodQuantity){
         animalParams.get(clazz)[3] = foodQuantity;
     }
 
@@ -83,5 +89,21 @@ public class Params {
 
     public void setPlantWeight(int plantWeight) {
         this.plantWeight = plantWeight;
+    }
+
+    public int getIslandWidth() {
+        return islandWidth;
+    }
+
+    public void setIslandWidth(int islandWidth) {
+        this.islandWidth = islandWidth;
+    }
+
+    public int getIslandHeight() {
+        return islandHeight;
+    }
+
+    public void setIslandHeight(int islandHeight) {
+        this.islandHeight = islandHeight;
     }
 }

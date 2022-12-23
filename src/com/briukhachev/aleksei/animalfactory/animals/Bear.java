@@ -9,13 +9,14 @@ public class Bear extends Animal implements Predator {
     private final double weight;
     private final int speed;
     private final double foodQuantity;
-    private Image image =
-    private static int count;
+    public static Image image;
+    public static int count;
 
     public Bear(double weight, int speed, double foodQuantity) {
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
+        image = Toolkit.getDefaultToolkit().getImage("res/Bear.png");
         count++;
     }
 
@@ -30,4 +31,5 @@ public class Bear extends Animal implements Predator {
     public double getFoodQuantity() {
         return foodQuantity;
     }
+
 }
