@@ -14,7 +14,7 @@ public class View extends JPanel implements ActionListener {
     private static final int LOCATION_MARINE = 2;
     private Controller controller;
     private Model model;
-    private Location location = new Location();
+//    private Location location = new Location();
 //    private Params params = new Params();
 //    private final int LOCATION_SIZE = (1500 / params.getWidth()) - LOCATION_MARINE;
     private Image image;

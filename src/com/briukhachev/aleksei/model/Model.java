@@ -1,5 +1,8 @@
 package com.briukhachev.aleksei.model;
 
+import com.briukhachev.aleksei.animalfactory.AnimalType;
+import com.briukhachev.aleksei.animalfactory.IslandFactory;
+
 public class Model {
 //    private Params params = new Params();
 //    private Location[][] simLocation = new Location[params.()][params.getHeight()];
@@ -27,4 +30,8 @@ public class Model {
 //        ScheduledExecutorService scheduleSimCycle = Executors.newScheduledThreadPool(5);
 //        scheduleSimCycle.scheduleAtFixedRate(new Cycle(), 0, 500, TimeUnit.MILLISECONDS);
 //    }
+    public void createNew(IslandFactory factory){
+        factory.createNewOrganism(AnimalType.WOLF);
+        factory.createNewOrganism(AnimalType.WOLF);
+    }
 }
