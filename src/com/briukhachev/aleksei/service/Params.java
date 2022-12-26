@@ -1,6 +1,5 @@
 package com.briukhachev.aleksei.service;
 
-
 import com.briukhachev.aleksei.animalfactory.AnimalType;
 import com.briukhachev.aleksei.animalfactory.Organism;
 import com.briukhachev.aleksei.animalfactory.Plants;

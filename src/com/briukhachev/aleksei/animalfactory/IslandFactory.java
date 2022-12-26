@@ -1,12 +1,13 @@
 package com.briukhachev.aleksei.animalfactory;
 
 import com.briukhachev.aleksei.animalfactory.animals.*;
+import com.briukhachev.aleksei.service.Params;
 
 public class IslandFactory {
     private Params params = new Params();
-    public Animal createNewOrganism(AnimalType type){
+    public Organism createNewOrganism(AnimalType type){
         return switch (type){
-            case WOLF -> new Wolf(params.getAnimalWeight(Wolf.class), (int) params.getAnimalSpeed(Wolf.class), params.getAnimalFoodQuantity(Wolf.class));
+            case WOLF -> new Wolf(params.getAnimalWeight(Wolf.class),(int) params.getAnimalSpeed(Wolf.class), params.getAnimalFoodQuantity(Wolf.class));
             case SNAKE -> new Snake(params.getAnimalWeight(Snake.class), (int) params.getAnimalSpeed(Snake.class), params.getAnimalFoodQuantity(Snake.class));
             case FOX -> new Fox(params.getAnimalWeight(Fox.class), (int) params.getAnimalSpeed(Fox.class), params.getAnimalFoodQuantity(Fox.class));
             case BEAR -> new Bear(params.getAnimalWeight(Bear.class), (int) params.getAnimalSpeed(Bear.class), params.getAnimalFoodQuantity(Bear.class));
@@ -21,8 +22,8 @@ public class IslandFactory {
             case BUFFALO -> new Buffalo(params.getAnimalWeight(Buffalo.class), (int) params.getAnimalSpeed(Buffalo.class), params.getAnimalFoodQuantity(Buffalo.class));
             case DUCK -> new Duck(params.getAnimalWeight(Duck.class), (int) params.getAnimalSpeed(Duck.class), params.getAnimalFoodQuantity(Duck.class));
             case CATERPILLAR -> new Caterpillar(params.getAnimalWeight(Caterpillar.class), (int) params.getAnimalSpeed(Caterpillar.class), params.getAnimalFoodQuantity(Caterpillar.class));
-            case PLANT -> new Plants((int)params.getPlantWeight());
-//            case EMPTY -> null;
+            case PLANT -> new Plants(params.getPlantWeight());
+            case EMPTY -> null;
         };
     }
 
