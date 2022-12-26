@@ -13,7 +13,9 @@ public class Params {
     private int islandWidth;
     private int islandHeight;
     private Map<Class<? extends Organism>, double[]> animalParams = new HashMap<>();
-    {        animalParams.put(Wolf.class, new double[]{50, 30, 3, 8});
+
+    {
+        animalParams.put(Wolf.class, new double[]{50, 30, 3, 8});
         animalParams.put(Snake.class, new double[]{15, 30, 1, 3});
         animalParams.put(Fox.class, new double[]{8, 30, 2, 2});
         animalParams.put(Bear.class, new double[]{500, 5, 2, 80});
@@ -30,6 +32,7 @@ public class Params {
         animalParams.put(Caterpillar.class, new double[]{0.01d, 1000, 0, 0});
         animalParams.put(Plants.class, new double[]{1, 200, 0, 0});
     }
+
     private int[][] eatingProbability = new int[][]{
             {0, 0, 0, 0, 10, 15, 60, 80, 60, 70, 15, 10, 40, 0, 0},
             {0, 15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0},
@@ -47,11 +50,6 @@ public class Params {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90, 100},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 90, 100},
     };
-
-    public void initAnimalParams() {
-
-
-    }
 
     public int getEatingProbability(AnimalType animalType, AnimalType typeToEat) {
 //        if (animalType.ordinal() < 0){
