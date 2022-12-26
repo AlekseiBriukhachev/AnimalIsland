@@ -18,7 +18,7 @@ public enum AnimalType {
     SHEEP,
     SNAKE,
     WOLF,
-//    PLANT,
+    PLANT,
 //    EMPTY
 }
 

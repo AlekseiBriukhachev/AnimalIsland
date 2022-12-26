@@ -1,8 +1,9 @@
 package com.briukhachev.aleksei.service;
 
 
-import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.AnimalType;
+import com.briukhachev.aleksei.animalfactory.Organism;
+import com.briukhachev.aleksei.animalfactory.Plants;
 import com.briukhachev.aleksei.animalfactory.animals.*;
 
 import java.util.HashMap;
@@ -12,10 +13,10 @@ public class Params {
     private int plantWeight;
     private int islandWidth;
     private int islandHeight;
-    private Map<Class<? extends Animal>, double[]> animalParams = new HashMap<>();
+    private Map<Class<? extends Organism>, double[]> animalParams = new HashMap<>();
     private int[][] eatingProbability = new int[][]{
             {0, 0, 0, 0, 10, 15, 60, 80, 60, 70, 15, 10, 40, 0, 0},
-            {0,	15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0},
+            {0, 15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0},
             {0, 0, 0, 0, 0, 0, 70, 90, 0, 0, 0, 0, 60, 40, 0},
             {0, 80, 0, 0, 40, 80, 80, 90, 70, 70, 50, 20, 10, 0, 0},
             {0, 0, 10, 0, 0, 0, 90, 90, 0, 0, 0, 0, 80, 0, 0},
@@ -47,39 +48,50 @@ public class Params {
         animalParams.put(Buffalo.class, new double[]{700, 10, 3, 100});
         animalParams.put(Duck.class, new double[]{1, 200, 4, 0.15d});
         animalParams.put(Caterpillar.class, new double[]{0.01d, 1000, 0, 0});
+        animalParams.put(Plants.class, new double[]{1, 200, 0, 0});
+
     }
-    public int getEatingProbability(AnimalType animalType, AnimalType typeToEat){
+
+    public int getEatingProbability(AnimalType animalType, AnimalType typeToEat) {
 //        if (animalType.ordinal() < 0){
 //            return 0;
 //        }
 //        if (typeToEat.ordinal() > 16)
-        if ( animalType.ordinal() != typeToEat.ordinal()) {
+        if (animalType.ordinal() != typeToEat.ordinal()) {
             return eatingProbability[animalType.ordinal()][typeToEat.ordinal()];
         }
         return 0;
     }
-    public double getAnimalWeight(Class<? extends Animal> clazz){
+
+    public double getAnimalWeight(Class<? extends Organism> clazz) {
         return animalParams.get(clazz)[0];
     }
-    public void setAnimalWeight(Class<? extends Animal> key, double weight){
+
+    public void setAnimalWeight(Class<? extends Organism> key, double weight) {
         animalParams.get(key)[0] = weight;
     }
-    public double getAnimalPerLocation(Class<? extends Animal> clazz){
+
+    public double getAnimalPerLocation(Class<? extends Organism> clazz) {
         return animalParams.get(clazz)[1];
     }
-    public void setAnimalPerLocation(Class<? extends Animal> key, double animalNumbers){
+
+    public void setAnimalPerLocation(Class<? extends Organism> key, double animalNumbers) {
         animalParams.get(key)[1] = animalNumbers;
     }
-    public double getAnimalSpeed(Class<? extends Animal> clazz){
+
+    public double getAnimalSpeed(Class<? extends Organism> clazz) {
         return animalParams.get(clazz)[2];
     }
-    public void setAnimalSpeed(Class<? extends Animal> clazz, double speed){
+
+    public void setAnimalSpeed(Class<? extends Organism> clazz, double speed) {
         animalParams.get(clazz)[2] = speed;
     }
-    public double getAnimalFoodQuantity(Class<? extends Animal> clazz){
+
+    public double getAnimalFoodQuantity(Class<? extends Organism> clazz) {
         return animalParams.get(clazz)[3];
     }
-    public void setAnimalFoodQuantity(Class<? extends Animal> clazz,  double foodQuantity){
+
+    public void setAnimalFoodQuantity(Class<? extends Organism> clazz, double foodQuantity) {
         animalParams.get(clazz)[3] = foodQuantity;
     }
 

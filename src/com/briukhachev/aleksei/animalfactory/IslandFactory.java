@@ -1,7 +1,6 @@
 package com.briukhachev.aleksei.animalfactory;
 
 import com.briukhachev.aleksei.animalfactory.animals.*;
-import com.briukhachev.aleksei.service.*;
 
 public class IslandFactory {
     private Params params = new Params();
@@ -22,7 +21,7 @@ public class IslandFactory {
             case BUFFALO -> new Buffalo(params.getAnimalWeight(Buffalo.class), (int) params.getAnimalSpeed(Buffalo.class), params.getAnimalFoodQuantity(Buffalo.class));
             case DUCK -> new Duck(params.getAnimalWeight(Duck.class), (int) params.getAnimalSpeed(Duck.class), params.getAnimalFoodQuantity(Duck.class));
             case CATERPILLAR -> new Caterpillar(params.getAnimalWeight(Caterpillar.class), (int) params.getAnimalSpeed(Caterpillar.class), params.getAnimalFoodQuantity(Caterpillar.class));
-//            case PLANT -> new Plants(params.getPlantWeight());
+            case PLANT -> new Plants((int)params.getPlantWeight());
 //            case EMPTY -> null;
         };
     }
