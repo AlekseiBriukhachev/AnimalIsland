@@ -1,6 +1,6 @@
 package com.briukhachev.aleksei.animalfactory;
 
-import com.briukhachev.aleksei.animalfactory.animals.*;
+import com.briukhachev.aleksei.animals.*;
 import com.briukhachev.aleksei.service.Params;
 
 public class IslandFactory {

@@ -1,12 +1,11 @@
-package com.briukhachev.aleksei.animalfactory.animals;
+package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
-import com.briukhachev.aleksei.animalfactory.Predator;
 
 import java.awt.*;
 
-public class Boar extends Animal implements Predator, Herbivores {
+public class Rabbit extends Animal implements Herbivores {
 
     private final double weight;
     private final int speed;
@@ -14,11 +13,12 @@ public class Boar extends Animal implements Predator, Herbivores {
     public static Image image;
     public static int count;
 
-    public Boar(double weight, int speed, double foodQuantity) {
+    public Rabbit(double weight, int speed, double foodQuantity) {
+        super(speed, foodQuantity);
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
-        image = Toolkit.getDefaultToolkit().getImage("res/Boar.png");
+        image = Toolkit.getDefaultToolkit().getImage("res/Rabbit.png");
         count++;
     }
 
@@ -34,3 +34,4 @@ public class Boar extends Animal implements Predator, Herbivores {
         return foodQuantity;
     }
 }
+

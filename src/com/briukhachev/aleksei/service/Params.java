@@ -3,7 +3,7 @@ package com.briukhachev.aleksei.service;
 import com.briukhachev.aleksei.animalfactory.AnimalType;
 import com.briukhachev.aleksei.animalfactory.Organism;
 import com.briukhachev.aleksei.animalfactory.Plants;
-import com.briukhachev.aleksei.animalfactory.animals.*;
+import com.briukhachev.aleksei.animals.*;
 
 import java.util.HashMap;
 import java.util.Map;

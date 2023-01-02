@@ -1,11 +1,11 @@
-package com.briukhachev.aleksei.animalfactory.animals;
+package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.animalfactory.Animal;
-import com.briukhachev.aleksei.animalfactory.Herbivores;
+import com.briukhachev.aleksei.animalfactory.Predator;
 
 import java.awt.*;
 
-public class Caterpillar extends Animal implements Herbivores {
+public class Wolf extends Animal implements Predator {
 
     private final double weight;
     private final int speed;
@@ -13,11 +13,12 @@ public class Caterpillar extends Animal implements Herbivores {
     public static Image image;
     public static int count;
 
-    public Caterpillar(double weight, int speed, double foodQuantity) {
+    public Wolf(double weight, int speed, double foodQuantity) {
+        super(speed, foodQuantity);
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
-        image = Toolkit.getDefaultToolkit().getImage("res/Caterpillar.png");
+        image = Toolkit.getDefaultToolkit().getImage("res/Wolf.png");
         count++;
     }
 

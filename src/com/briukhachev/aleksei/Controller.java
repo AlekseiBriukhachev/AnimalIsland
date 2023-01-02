@@ -2,9 +2,7 @@ package com.briukhachev.aleksei;
 
 
 import com.briukhachev.aleksei.animalfactory.IslandFactory;
-import com.briukhachev.aleksei.model.Location;
 import com.briukhachev.aleksei.model.Model;
-import com.briukhachev.aleksei.service.Params;
 
 public class Controller {
     private Model model;

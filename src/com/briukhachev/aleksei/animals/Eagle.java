@@ -1,4 +1,4 @@
-package com.briukhachev.aleksei.animalfactory.animals;
+package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Predator;
@@ -14,6 +14,7 @@ public class Eagle extends Animal implements Predator {
     public static int count;
 
     public Eagle(double weight, int speed, double foodQuantity) {
+        super(speed, foodQuantity);
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;

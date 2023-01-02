@@ -1,7 +1,7 @@
 package com.briukhachev.aleksei;
 
 
-import com.briukhachev.aleksei.animalfactory.animals.Wolf;
+import com.briukhachev.aleksei.animals.Wolf;
 import com.briukhachev.aleksei.model.Model;
 
 public class Main {

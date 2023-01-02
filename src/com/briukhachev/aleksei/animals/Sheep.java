@@ -1,23 +1,24 @@
-package com.briukhachev.aleksei.animalfactory.animals;
+package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
-import com.briukhachev.aleksei.animalfactory.Predator;
 
 import java.awt.*;
 
-public class Duck extends Animal implements Predator, Herbivores {
+public class Sheep extends Animal implements Herbivores {
+
     private final double weight;
     private final int speed;
     private final double foodQuantity;
     public static Image image;
     public static int count;
 
-    public Duck(double weight, int speed, double foodQuantity) {
+    public Sheep(double weight, int speed, double foodQuantity) {
+        super(speed, foodQuantity);
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
-        image = Toolkit.getDefaultToolkit().getImage("res/Duck.png");
+        image = Toolkit.getDefaultToolkit().getImage("res/Sheep.png");
         count++;
     }
 

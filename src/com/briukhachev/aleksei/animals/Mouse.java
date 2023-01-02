@@ -1,4 +1,4 @@
-package com.briukhachev.aleksei.animalfactory.animals;
+package com.briukhachev.aleksei.animals;
 
 import com.briukhachev.aleksei.animalfactory.Animal;
 import com.briukhachev.aleksei.animalfactory.Herbivores;
@@ -15,6 +15,7 @@ public class Mouse extends Animal implements Predator, Herbivores {
     public static int count;
 
     public Mouse(double weight, int speed, double foodQuantity) {
+        super(speed, foodQuantity);
         this.weight = weight;
         this.speed = speed;
         this.foodQuantity = foodQuantity;
