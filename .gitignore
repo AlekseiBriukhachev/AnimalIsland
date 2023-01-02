@@ -4,17 +4,6 @@
 target/
 .idea/
 .idea
-.repository/
 *.iml
-*.iws
-*.jrtc
-*.java
-*.class
-*.info
-*.properties
 *.jar
-/out.log
-/out.log.*
 /out/
-/out/
-/.idea/
