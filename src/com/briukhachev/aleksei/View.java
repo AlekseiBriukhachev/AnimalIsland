@@ -1,5 +1,6 @@
 package com.briukhachev.aleksei;
 
+import com.briukhachev.aleksei.model.Location;
 import com.briukhachev.aleksei.model.Model;
 
 import javax.swing.*;

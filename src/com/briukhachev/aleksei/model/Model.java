@@ -2,6 +2,8 @@ package com.briukhachev.aleksei.model;
 
 import com.briukhachev.aleksei.animalfactory.AnimalType;
 import com.briukhachev.aleksei.animalfactory.IslandFactory;
+import com.briukhachev.aleksei.animalfactory.Plants;
+import com.briukhachev.aleksei.animals.Wolf;
 
 public class Model {
 //    private Params params = new Params();
@@ -31,7 +33,8 @@ public class Model {
 //        scheduleSimCycle.scheduleAtFixedRate(new Cycle(), 0, 500, TimeUnit.MILLISECONDS);
 //    }
     public void createNew(IslandFactory factory){
-        factory.createNewOrganism(AnimalType.WOLF);
-        factory.createNewOrganism(AnimalType.WOLF);
+//        factory.createNewOrganism(AnimalType.WOLF);
+//        factory.createNewOrganism(AnimalType.WOLF);
+
     }
 }

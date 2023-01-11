@@ -10,11 +10,11 @@ public class Caterpillar extends Animal implements Herbivores {
     private static Image image;
     private static int count;
 
-    public Caterpillar(double weight, int speed, double foodQuantity) {
-        super(weight, speed, foodQuantity);
-        image = Toolkit.getDefaultToolkit().getImage("res/Caterpillar.png");
-        count++;
-    }
+//    public Caterpillar(double weight, int speed, double foodQuantity) {
+//        super(weight, speed, foodQuantity);
+//        image = Toolkit.getDefaultToolkit().getImage("res/Caterpillar.png");
+//        count++;
+//    }
 
     public static Image getImage() {
         return image;
