@@ -1,0 +1,575 @@
+From 972fcaa64c50f096fb03b0e88c1de913292974c1 Mon Sep 17 00:00:00 2001
+From: Aleksei Briukhachev <abriukhachev@trask.cz>
+Date: Tue, 13 Dec 2022 23:27:49 +0100
+Subject: [PATCH] Update animal classes, refactoring
+
+---
+ .../aleksei/animalfactory/Animal.java         |  6 +++
+ .../aleksei/animalfactory/Herbivores.java     |  5 ++
+ .../aleksei/animalfactory/IslandFactory.java  | 27 ++++++++++
+ .../aleksei/animalfactory/Organism.java       |  5 ++
+ .../aleksei/animalfactory/OrganismType.java   | 24 +++++++++
+ .../aleksei/animalfactory/Plants.java         |  6 +++
+ .../aleksei/animalfactory/Predator.java       |  5 ++
+ .../aleksei/animalfactory/animals/Bear.java   | 14 +++++
+ .../aleksei/animalfactory/animals/Boar.java   | 13 +++++
+ .../animalfactory/animals/Buffalo.java        | 13 +++++
+ .../animalfactory/animals/Caterpillar.java    | 13 +++++
+ .../aleksei/animalfactory/animals/Deer.java   | 14 +++++
+ .../aleksei/animalfactory/animals/Duck.java   | 13 +++++
+ .../aleksei/animalfactory/animals/Eagle.java  | 13 +++++
+ .../aleksei/animalfactory/animals/Fox.java    | 13 +++++
+ .../aleksei/animalfactory/animals/Goat.java   | 13 +++++
+ .../aleksei/animalfactory/animals/Horse.java  | 13 +++++
+ .../aleksei/animalfactory/animals/Mouse.java  | 13 +++++
+ .../aleksei/animalfactory/animals/Rabbit.java | 15 ++++++
+ .../aleksei/animalfactory/animals/Sheep.java  | 13 +++++
+ .../aleksei/animalfactory/animals/Snake.java  | 13 +++++
+ .../aleksei/animalfactory/animals/Wolf.java   | 13 +++++
+ .../briukhachev/aleksei/model/Location.java   | 51 +++++++++++++++++++
+ .../briukhachev/aleksei/service/Params.java   | 32 ++++++++++++
+ .../aleksei/service/Statistic.java            |  4 ++
+ 25 files changed, 364 insertions(+)
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/Animal.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/Herbivores.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/IslandFactory.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/Organism.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/OrganismType.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/Plants.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/Predator.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Bear.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Boar.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Buffalo.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Caterpillar.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Deer.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Duck.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Eagle.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Fox.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Goat.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Horse.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Mouse.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Rabbit.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Sheep.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Snake.java
+ create mode 100644 src/com/briukhachev/aleksei/animalfactory/animals/Wolf.java
+ create mode 100644 src/com/briukhachev/aleksei/model/Location.java
+ create mode 100644 src/com/briukhachev/aleksei/service/Params.java
+ create mode 100644 src/com/briukhachev/aleksei/service/Statistic.java
+
+diff --git a/src/com/briukhachev/aleksei/animalfactory/Animal.java b/src/com/briukhachev/aleksei/animalfactory/Animal.java
+new file mode 100644
+index 0000000..7eb02e7
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/Animal.java
+@@ -0,0 +1,6 @@
++package com.briukhachev.aleksei.animalfactory;
++
++
++public abstract class Animal extends Organism {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/Herbivores.java b/src/com/briukhachev/aleksei/animalfactory/Herbivores.java
+new file mode 100644
+index 0000000..ab33147
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/Herbivores.java
+@@ -0,0 +1,5 @@
++package com.briukhachev.aleksei.animalfactory;
++
++public abstract class Herbivores extends Animal {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/IslandFactory.java b/src/com/briukhachev/aleksei/animalfactory/IslandFactory.java
+new file mode 100644
+index 0000000..cd2db3a
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/IslandFactory.java
+@@ -0,0 +1,27 @@
++package com.briukhachev.aleksei.animalfactory;
++
++import com.briukhachev.aleksei.animalfactory.animals.*;
++
++public class IslandFactory {
++    public Organism createNewOrganism(OrganismType type){
++        return switch (type){
++            case WOLF -> new Wolf();
++            case SNAKE -> new Snake();
++            case FOX -> new Fox();
++            case BEAR -> new Bear();
++            case EAGLE -> new Eagle();
++            case HORSE -> new Horse();
++            case DEER -> new Deer();
++            case RABBIT -> new Rabbit();
++            case MOUSE -> new Mouse();
++            case GOAT -> new Goat();
++            case SHEEP -> new Sheep();
++            case BOAR -> new Boar();
++            case BUFFALO -> new Buffalo();
++            case DUCK -> new Duck();
++            case CATERPILLAR -> new Caterpillar();
++            case PLANT -> new Plants();
++            case EMPTY -> null;
++        };
++    }
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/Organism.java b/src/com/briukhachev/aleksei/animalfactory/Organism.java
+new file mode 100644
+index 0000000..57be6a4
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/Organism.java
+@@ -0,0 +1,5 @@
++package com.briukhachev.aleksei.animalfactory;
++
++public abstract class Organism{
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/OrganismType.java b/src/com/briukhachev/aleksei/animalfactory/OrganismType.java
+new file mode 100644
+index 0000000..53a2bb9
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/OrganismType.java
+@@ -0,0 +1,24 @@
++package com.briukhachev.aleksei.animalfactory;
++
++
++
++public enum OrganismType {
++    BEAR,
++    BOAR,
++    BUFFALO,
++    CATERPILLAR,
++    DEER,
++    DUCK,
++    EAGLE,
++    FOX,
++    GOAT,
++    HORSE,
++    MOUSE,
++    RABBIT,
++    SHEEP,
++    SNAKE,
++    WOLF,
++    PLANT,
++    EMPTY
++}
++
+diff --git a/src/com/briukhachev/aleksei/animalfactory/Plants.java b/src/com/briukhachev/aleksei/animalfactory/Plants.java
+new file mode 100644
+index 0000000..6717ae4
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/Plants.java
+@@ -0,0 +1,6 @@
++package com.briukhachev.aleksei.animalfactory;
++
++public class Plants extends Organism {
++
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/Predator.java b/src/com/briukhachev/aleksei/animalfactory/Predator.java
+new file mode 100644
+index 0000000..5f5fafe
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/Predator.java
+@@ -0,0 +1,5 @@
++package com.briukhachev.aleksei.animalfactory;
++
++public abstract class Predator extends Animal {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Bear.java b/src/com/briukhachev/aleksei/animalfactory/animals/Bear.java
+new file mode 100644
+index 0000000..d481567
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Bear.java
+@@ -0,0 +1,14 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Animal;
++import com.briukhachev.aleksei.animalfactory.Predator;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Bear extends Predator {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Boar.java b/src/com/briukhachev/aleksei/animalfactory/animals/Boar.java
+new file mode 100644
+index 0000000..27d7a94
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Boar.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Boar extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Buffalo.java b/src/com/briukhachev/aleksei/animalfactory/animals/Buffalo.java
+new file mode 100644
+index 0000000..d6a8821
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Buffalo.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Buffalo extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Caterpillar.java b/src/com/briukhachev/aleksei/animalfactory/animals/Caterpillar.java
+new file mode 100644
+index 0000000..4e35b5f
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Caterpillar.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Caterpillar extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Deer.java b/src/com/briukhachev/aleksei/animalfactory/animals/Deer.java
+new file mode 100644
+index 0000000..5fe4d5e
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Deer.java
+@@ -0,0 +1,14 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Deer extends Herbivores {
++
++}
++
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Duck.java b/src/com/briukhachev/aleksei/animalfactory/animals/Duck.java
+new file mode 100644
+index 0000000..7008535
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Duck.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Duck extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Eagle.java b/src/com/briukhachev/aleksei/animalfactory/animals/Eagle.java
+new file mode 100644
+index 0000000..828cb34
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Eagle.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Predator;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Eagle extends Predator {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Fox.java b/src/com/briukhachev/aleksei/animalfactory/animals/Fox.java
+new file mode 100644
+index 0000000..57ea943
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Fox.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Predator;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Fox extends Predator {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Goat.java b/src/com/briukhachev/aleksei/animalfactory/animals/Goat.java
+new file mode 100644
+index 0000000..300b898
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Goat.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Goat extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Horse.java b/src/com/briukhachev/aleksei/animalfactory/animals/Horse.java
+new file mode 100644
+index 0000000..3e95852
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Horse.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Horse extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Mouse.java b/src/com/briukhachev/aleksei/animalfactory/animals/Mouse.java
+new file mode 100644
+index 0000000..e2891ee
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Mouse.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Mouse extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Rabbit.java b/src/com/briukhachev/aleksei/animalfactory/animals/Rabbit.java
+new file mode 100644
+index 0000000..a3fc653
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Rabbit.java
+@@ -0,0 +1,15 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Rabbit extends Herbivores {
++
++}
++
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Sheep.java b/src/com/briukhachev/aleksei/animalfactory/animals/Sheep.java
+new file mode 100644
+index 0000000..6d471e6
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Sheep.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Herbivores;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Sheep extends Herbivores {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Snake.java b/src/com/briukhachev/aleksei/animalfactory/animals/Snake.java
+new file mode 100644
+index 0000000..33fd0a1
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Snake.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Predator;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Snake extends Predator {
++
++}
+diff --git a/src/com/briukhachev/aleksei/animalfactory/animals/Wolf.java b/src/com/briukhachev/aleksei/animalfactory/animals/Wolf.java
+new file mode 100644
+index 0000000..b216d55
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/animalfactory/animals/Wolf.java
+@@ -0,0 +1,13 @@
++package com.briukhachev.aleksei.animalfactory.animals;
++
++import com.briukhachev.aleksei.model.Location;
++import com.briukhachev.aleksei.service.Params;
++import com.briukhachev.aleksei.animalfactory.Predator;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class Wolf extends Predator {
++
++}
+diff --git a/src/com/briukhachev/aleksei/model/Location.java b/src/com/briukhachev/aleksei/model/Location.java
+new file mode 100644
+index 0000000..39c30a6
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/model/Location.java
+@@ -0,0 +1,51 @@
++package com.briukhachev.aleksei.model;
++
++import com.briukhachev.aleksei.animalfactory.OrganismType;
++
++import java.awt.*;
++
++public class Location {
++    private int x;
++    private int y;
++
++    private OrganismType image;
++
++    public Location() {
++        image = OrganismType.EMPTY;
++    }
++
++    public Location(int x, int y) {
++        this.x = x;
++        this.y = y;
++    }
++
++    public void setImage(OrganismType image) {
++        this.image = image;
++    }
++
++    public OrganismType getImage() {
++        return image;
++    }
++
++    public Image chooseImage(OrganismType animalType) {
++        return switch (animalType) {
++            case BEAR -> Toolkit.getDefaultToolkit().getImage("res/Bear.png");
++            case BOAR -> Toolkit.getDefaultToolkit().getImage("res/Boar.png");
++            case BUFFALO -> Toolkit.getDefaultToolkit().getImage("res/Buffalo.png");
++            case CATERPILLAR -> Toolkit.getDefaultToolkit().getImage("res/Caterpillar.png");
++            case DEER -> Toolkit.getDefaultToolkit().getImage("res/Deer.png");
++            case DUCK -> Toolkit.getDefaultToolkit().getImage("res/Duck.png");
++            case EAGLE -> Toolkit.getDefaultToolkit().getImage("res/Eagle.png");
++            case FOX -> Toolkit.getDefaultToolkit().getImage("res/Fox.png");
++            case GOAT -> Toolkit.getDefaultToolkit().getImage("res/Goat.png");
++            case HORSE -> Toolkit.getDefaultToolkit().getImage("res/Horse.png");
++            case MOUSE -> Toolkit.getDefaultToolkit().getImage("res/Mouse.png");
++            case RABBIT -> Toolkit.getDefaultToolkit().getImage("res/Rabbit.png");
++            case SHEEP -> Toolkit.getDefaultToolkit().getImage("res/Sheep.png");
++            case SNAKE -> Toolkit.getDefaultToolkit().getImage("res/Snake.png");
++            case WOLF -> Toolkit.getDefaultToolkit().getImage("res/Wolf.png");
++            case PLANT -> Toolkit.getDefaultToolkit().getImage("res/Plant.png");
++            default -> Toolkit.getDefaultToolkit().getImage("res/Empty.png");
++        };
++    }
++}
+diff --git a/src/com/briukhachev/aleksei/service/Params.java b/src/com/briukhachev/aleksei/service/Params.java
+new file mode 100644
+index 0000000..c9b9e48
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/service/Params.java
+@@ -0,0 +1,32 @@
++package com.briukhachev.aleksei.service;
++
++
++public class Params {
++    private int wolfWeight = 50;
++    private int wolfCountPerLocation = 30;
++    private int wolfSpeed = 3;
++    private int wolfFoodQuantity = 8;
++
++
++
++
++
++    private int snakeCount = 30;
++    private int foxCount = 30;
++    private int bearCount = 5;
++    private int eagleCount = 20;
++    private int horseCount = 20;
++    private int deerCount = 20;
++    private int rabbitCount = 150;
++    private int mouseCount = 500;
++    private int goatCount = 140;
++    private int sheepCount = 140;
++    private int boarCount = 50;
++    private int buffaloCount = 10;
++    private int duckCount = 200;
++    private int caterpillarCount = 1000;
++    private int plantCount = 200;
++    private int width = 100;
++    private int height = 20;
++
++}
+diff --git a/src/com/briukhachev/aleksei/service/Statistic.java b/src/com/briukhachev/aleksei/service/Statistic.java
+new file mode 100644
+index 0000000..8664e08
+--- /dev/null
++++ b/src/com/briukhachev/aleksei/service/Statistic.java
+@@ -0,0 +1,4 @@
++package com.briukhachev.aleksei.service;
++
++public class Statistic {
++}
+-- 
+2.38.1.windows.1
+
