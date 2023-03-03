@@ -1,22 +1,18 @@
 package com.aleksei.animalisland.model;
 
-
-import com.briukhachev.aleksei.service.Params;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import com.aleksei.island.config.AppConfig;
+import com.aleksei.island.entities.Location;
 
 public class Model {
-    private Params params = new Params();
-    private Location[][] simLocation = new Location[params.getWidth()][params.getHeight()];
+    private final AppConfig config = AppConfig.getAppConfig();
+    private Location[][] simLocation = new Location[config.getIslandWidth()][config.getIslandHeight()];
     public Model(){
         createSimLocations();
     }
 
     private void createSimLocations() {
-        for (int x = 0; x < params.getWidth(); x++) {
-            for (int y = 0; y < params.getHeight(); y++) {
+        for (int x = 0; x < config.getIslandWidth(); x++) {
+            for (int y = 0; y < config.getIslandHeight(); y++) {
                 simLocation[x][y] = new Location();
             }
         }
@@ -31,7 +27,7 @@ public class Model {
     }
 
     public void simulate() {
-        ScheduledExecutorService scheduleSimCycle = Executors.newScheduledThreadPool(5);
-        scheduleSimCycle.scheduleAtFixedRate(new Cycle(), 0, 500, TimeUnit.MILLISECONDS);
+//        ScheduledExecutorService scheduleSimCycle = Executors.newScheduledThreadPool(5);
+//        scheduleSimCycle.scheduleAtFixedRate(new Cycle(), 0, 500, TimeUnit.MILLISECONDS);
     }
 }
