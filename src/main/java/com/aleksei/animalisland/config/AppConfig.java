@@ -1,7 +1,7 @@
 package com.aleksei.animalisland.config;
 
 
-import com.aleksei.animalisland.model.Animal;
+import com.aleksei.animalisland.models.Animal;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

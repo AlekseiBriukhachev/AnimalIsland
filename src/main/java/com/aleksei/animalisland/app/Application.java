@@ -2,7 +2,7 @@ package com.aleksei.animalisland.app;
 
 
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
-import com.aleksei.animalisland.service.Factories;
+import com.aleksei.animalisland.utils.Factories;
 import org.apache.log4j.Logger;
 
 public class Application {
