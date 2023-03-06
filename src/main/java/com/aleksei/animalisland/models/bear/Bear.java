@@ -10,10 +10,6 @@ import lombok.Data;
 public class Bear extends Animal implements Predator {
 
 
-    public Bear(Location location, double weight, int speed, double foodQuantity) {
-        super(location, weight, speed, foodQuantity);
-    }
-
     public Bear(double weight, int speed, double foodQuantity) {
         super(weight, speed, foodQuantity);
     }

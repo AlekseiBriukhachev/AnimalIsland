@@ -2,7 +2,6 @@ package com.aleksei.animalisland.services;
 
 import com.aleksei.animalisland.utils.Direction;
 import com.aleksei.animalisland.utils.Sized;
-import lombok.Data;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Comparator;
@@ -10,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
 public record Position(int x, int y) {
 
     public static Position onPosition(int x, int y) {
