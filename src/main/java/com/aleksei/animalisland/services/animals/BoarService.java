@@ -1,7 +1,7 @@
 package com.aleksei.animalisland.services.animals;
 
 import com.aleksei.animalisland.models.Animal;
-import com.aleksei.animalisland.models.boar.Boar;
+import com.aleksei.animalisland.models.animals.Boar;
 import com.aleksei.animalisland.services.IslandService;
 
 import java.util.ArrayList;

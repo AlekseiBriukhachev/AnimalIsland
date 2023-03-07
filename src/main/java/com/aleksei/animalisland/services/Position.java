@@ -1,7 +1,6 @@
 package com.aleksei.animalisland.services;
 
 import com.aleksei.animalisland.utils.Direction;
-import com.aleksei.animalisland.utils.Sized;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Comparator;
@@ -15,9 +14,6 @@ public record Position(int x, int y) {
         return new Position(x, y);
     }
 
-    public Position moveTo(Direction direction) {
-        return moveTo(direction, 1);
-    }
 
     public Position moveTo(Direction direction, int steps) {
         return new Position(
@@ -44,25 +40,25 @@ public record Position(int x, int y) {
                 .orElse(this);
     }
 
-    public Set<Position> lookAround(int radius, Sized sized) {
-        Set<Position> result = new HashSet<>();
-//        return IntStream.range(y - radius, y + radius)
-//                .mapToObj(IntStream.range(x - radius, x + radius)
-//                        .mapToObj(Position::onPosition()))
-        for (int dy = y - radius; dy <= y + radius; dy++) {
-            for (int dx = x - radius; dx < x + radius; dx++) {
-                Position availablePosition = Position.onPosition(dx, dy);
-                if (availablePosition.getDistance(this) <= radius && availablePosition.inPosition(sized)) {
-                    result.add(availablePosition);
-                }
-            }
-        }
-        return result;
-    }
-
-    public boolean inPosition(Sized sized) {
-        return !(x < 0 || x >= sized.getWidth() || y < 0 || y >= sized.getHeight());
-    }
+//    public Set<Position> lookAround(int radius) {
+//        Set<Position> result = new HashSet<>();
+////        return IntStream.range(y - radius, y + radius)
+////                .mapToObj(IntStream.range(x - radius, x + radius)
+////                        .mapToObj(Position::onPosition()))
+//        for (int dy = y - radius; dy <= y + radius; dy++) {
+//            for (int dx = x - radius; dx < x + radius; dx++) {
+//                Position availablePosition = Position.onPosition(dx, dy);
+//                if (availablePosition.getDistance(this) <= radius && availablePosition.inPosition(sized)) {
+//                    result.add(availablePosition);
+//                }
+//            }
+//        }
+//        return result;
+//    }
+//
+//    public boolean inPosition(Sized sized) {
+//        return !(x < 0 || x >= sized.getWidth() || y < 0 || y >= sized.getHeight());
+//    }
 
 
     public boolean adjustIn(int minX, int minY, int maxX, int maxY) {

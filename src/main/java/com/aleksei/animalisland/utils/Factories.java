@@ -1,28 +1,36 @@
 package com.aleksei.animalisland.utils;
 
 import com.aleksei.animalisland.models.*;
-import com.aleksei.animalisland.models.bear.Bear;
-import com.aleksei.animalisland.models.boar.Boar;
-import com.aleksei.animalisland.models.buffalo.Buffalo;
-import com.aleksei.animalisland.models.caterpillar.Caterpillar;
-import com.aleksei.animalisland.models.deer.Deer;
-import com.aleksei.animalisland.models.duck.Duck;
-import com.aleksei.animalisland.models.eagle.Eagle;
-import com.aleksei.animalisland.models.fox.Fox;
-import com.aleksei.animalisland.models.goat.Goat;
-import com.aleksei.animalisland.models.horse.Horse;
-import com.aleksei.animalisland.models.mouse.Mouse;
-import com.aleksei.animalisland.models.rabbit.Rabbit;
-import com.aleksei.animalisland.models.sheep.Sheep;
-import com.aleksei.animalisland.models.snake.Snake;
-import com.aleksei.animalisland.models.wolf.Wolf;
+import com.aleksei.animalisland.models.animals.Bear;
+import com.aleksei.animalisland.models.animals.Boar;
+import com.aleksei.animalisland.models.animals.Buffalo;
+import com.aleksei.animalisland.models.animals.Caterpillar;
+import com.aleksei.animalisland.models.animals.Deer;
+import com.aleksei.animalisland.models.animals.Duck;
+import com.aleksei.animalisland.models.animals.Eagle;
+import com.aleksei.animalisland.models.animals.Fox;
+import com.aleksei.animalisland.models.animals.Goat;
+import com.aleksei.animalisland.models.animals.Horse;
+import com.aleksei.animalisland.models.animals.Mouse;
+import com.aleksei.animalisland.models.animals.Rabbit;
+import com.aleksei.animalisland.models.animals.Sheep;
+import com.aleksei.animalisland.models.animals.Snake;
+import com.aleksei.animalisland.models.animals.Wolf;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.aleksei.animalisland.config.AppConfig;
 
 import java.awt.*;
 
-public class Factories {
+public class Factories<T extends Animal> {
     private final AppConfig configFactory = AppConfig.getAppConfig();
+    private static Factories instance;
+    private Factories(){}
+    public static synchronized Factories getInstance(){
+        if (instance == null){
+            instance = new Factories();
+        }
+        return instance;
+    }
     public Image chooseImage(AnimalType type) {
 
         return switch (type) {
@@ -43,7 +51,7 @@ public class Factories {
             case WOLF -> Toolkit.getDefaultToolkit().getImage("images/Wolf.png");
         };
     }
-    public Animal create(AnimalType type) {
+    public Animal<?> create(AnimalType type) {
         return switch (type){
             case WOLF -> new Wolf((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
             case SNAKE -> new Snake((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));

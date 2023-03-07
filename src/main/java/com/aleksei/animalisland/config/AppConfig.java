@@ -8,6 +8,8 @@ import com.typesafe.config.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import java.util.List;
+
 public final class AppConfig {
     private Config config;
     private static AppConfig appConfig;
@@ -49,6 +51,10 @@ public final class AppConfig {
     }
     public int getInitNumber(Class<? extends Animal> aClass){
         return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");
+    }
+    public List<String> getEatingProbability(Class<? extends Animal> aClass){
+
+        return config.getStringList(aClass.getSimpleName().toLowerCase() + ".eatProbability");
     }
 
     public int getLocationSize() {
