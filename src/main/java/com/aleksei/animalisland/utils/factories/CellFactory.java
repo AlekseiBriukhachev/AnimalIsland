@@ -1,4 +1,4 @@
-package com.aleksei.animalisland.utils.factory;
+package com.aleksei.animalisland.utils.factories;
 
 import com.aleksei.animalisland.models.Location;
 import com.aleksei.animalisland.models.Plant;

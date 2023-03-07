@@ -5,29 +5,26 @@ import com.aleksei.animalisland.models.Animal;
 import com.aleksei.animalisland.models.animals.Bear;
 import com.aleksei.animalisland.repositories.Predator;
 import com.aleksei.animalisland.services.Position;
-import com.aleksei.animalisland.utils.Direction;
-import com.aleksei.animalisland.utils.Factories;
+import com.aleksei.animalisland.utils.factories.AnimalFactory;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static com.aleksei.animalisland.utils.Utils.getAnimals;
 
 public class BearService implements Predator {
     private final AppConfig CONFIG = AppConfig.getAppConfig();
     private final List<Bear> bears;
     {
         bears = IntStream.range(0, CONFIG.getInitNumber(Bear.class))
-                .mapToObj(i -> (Bear) Factories.getInstance().create(AnimalType.BEAR))
+                .mapToObj(i -> (Bear) AnimalFactory.getInstance().create(AnimalType.BEAR))
                 .toList();
     }
     public List<Bear> breed(){
 
-            bears.add((Bear) Factories.getInstance().create(AnimalType.BEAR));
+            bears.add((Bear) AnimalFactory.getInstance().create(AnimalType.BEAR));
         return bears;
 
     }
@@ -51,15 +48,7 @@ public class BearService implements Predator {
                 .filter(s -> animals.getClass().getSimpleName().equals(s))
                 .findFirst()
                 .get());
-        synchronized (animals){
-            if (animals.size() > 1){
-                Animal otherAnimal = animals.get(ThreadLocalRandom.current().nextInt(animals.size()));
-                if (ThreadLocalRandom.current().nextInt() <= eatProbability){
-                    animals.remove(otherAnimal);
-                }
-            }
-        }
-        return animals;
+        return getAnimals(animals, eatProbability);
     }
 
 }

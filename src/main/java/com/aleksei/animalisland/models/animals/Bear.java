@@ -6,12 +6,23 @@ import com.aleksei.animalisland.models.Location;
 import com.aleksei.animalisland.repositories.Predator;
 import com.aleksei.animalisland.services.Position;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Animal {
+    @Getter
+    @Setter
+    private Position position;
 
 
-    public Bear(double weight, int speed, double foodQuantity, Position position) {
-        super(weight, speed, foodQuantity, position);
+    public Bear(double weight, int speed, double foodQuantity) {
+        super(weight, speed, foodQuantity);
+        this.position = new Position(
+                ThreadLocalRandom.current().nextInt(),
+                ThreadLocalRandom.current().nextInt()
+        );
     }
 
     @Override

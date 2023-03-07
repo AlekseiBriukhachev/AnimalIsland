@@ -19,10 +19,10 @@ public class MainWindow extends JFrame {
     private JButton stopStartButton;
     private JButton updateButton;
     private ButtonGroup bGroup;
-    private JToggleButton femaleRabbitLabel;
-    private JToggleButton maleRabbitLabel;
-    private JToggleButton femaleWolfLabel;
-    private JToggleButton maleWolfLabel;
+    private JToggleButton femaleBoarLabel;
+    private JToggleButton maleBoarLabel;
+    private JToggleButton femaleBearLabel;
+    private JToggleButton maleBearLabel;
     private FieldVisualizationPanel fieldPanel;
 
     public MainWindow() throws HeadlessException {
@@ -60,19 +60,19 @@ public class MainWindow extends JFrame {
 
         creaturePanel = new JPanel();
         creaturePanel.setLayout(new GridBagLayout());
-        femaleRabbitLabel = styled(new JToggleButton("F", new ImageIcon(RabbitDrawer.IMG)));
-        maleRabbitLabel = styled(new JToggleButton("M", new ImageIcon(RabbitDrawer.IMG)));
-        femaleWolfLabel = styled(new JToggleButton("F", new ImageIcon(WolfDrawer.IMG)));
-        maleWolfLabel = styled(new JToggleButton("M", new ImageIcon(WolfDrawer.IMG)));
+        femaleBoarLabel = styled(new JToggleButton("F", new ImageIcon(BoarDrawer.IMG)));
+        maleBoarLabel = styled(new JToggleButton("M", new ImageIcon(BoarDrawer.IMG)));
+        femaleBearLabel = styled(new JToggleButton("F", new ImageIcon(BearDrawer.IMG)));
+        maleBearLabel = styled(new JToggleButton("M", new ImageIcon(BearDrawer.IMG)));
         bGroup = new ButtonGroup();
-        bGroup.add(femaleRabbitLabel);
-        bGroup.add(maleRabbitLabel);
-        bGroup.add(femaleWolfLabel);
-        bGroup.add(maleWolfLabel);
-        creaturePanel.add(femaleRabbitLabel, gbc(0, 0));
-        creaturePanel.add(maleRabbitLabel, gbc(1, 0));
-        creaturePanel.add(femaleWolfLabel, gbc(2, 0));
-        creaturePanel.add(maleWolfLabel, gbc(3, 0));
+        bGroup.add(femaleBoarLabel);
+        bGroup.add(maleBoarLabel);
+        bGroup.add(femaleBearLabel);
+        bGroup.add(maleBearLabel);
+        creaturePanel.add(femaleBoarLabel, gbc(0, 0));
+        creaturePanel.add(maleBoarLabel, gbc(1, 0));
+        creaturePanel.add(femaleBearLabel, gbc(2, 0));
+        creaturePanel.add(maleBearLabel, gbc(3, 0));
 
         infoLabel = new JLabel("Info");
         infoLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -94,14 +94,14 @@ public class MainWindow extends JFrame {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    if (femaleRabbitLabel.isSelected()) {
-                        panel.putRabbitOn(e.getPoint(), new RabbitExample(Rabbit.ADULT, Sex.FEMALE));
-                    } else if (maleRabbitLabel.isSelected()) {
-                        panel.putRabbitOn(e.getPoint(), new RabbitExample(Rabbit.ADULT, Sex.MALE));
-                    } else if (femaleWolfLabel.isSelected()) {
-                        panel.putWolfOn(e.getPoint(), new WolfExample(Wolf.ADULT, Sex.FEMALE));
-                    } else if (maleWolfLabel.isSelected()) {
-                        panel.putWolfOn(e.getPoint(), new WolfExample(Wolf.ADULT, Sex.MALE));
+                    if (femaleBoarLabel.isSelected()) {
+                        panel.putBoarOn(e.getPoint(), new BoarExample(Boar.ADULT, Sex.FEMALE));
+                    } else if (maleBoarLabel.isSelected()) {
+                        panel.putBoarOn(e.getPoint(), new BoarExample(Boar.ADULT, Sex.MALE));
+                    } else if (femaleBearLabel.isSelected()) {
+                        panel.putBearOn(e.getPoint(), new BearExample(Bear.ADULT, Sex.FEMALE));
+                    } else if (maleBearLabel.isSelected()) {
+                        panel.putBearOn(e.getPoint(), new BearExample(Bear.ADULT, Sex.MALE));
                     }
                     if (!e.isShiftDown()) {
                         bGroup.clearSelection();

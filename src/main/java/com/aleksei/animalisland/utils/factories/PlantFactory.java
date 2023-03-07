@@ -1,10 +1,10 @@
-package com.aleksei.animalisland.utils.factory;
+package com.aleksei.animalisland.utils.factories;
 
 import com.aleksei.animalisland.config.AppConfig;
 import com.aleksei.animalisland.models.Plant;
 import com.typesafe.config.Config;
 
-public class GrassFactory {
+public class PlantFactory {
 
     protected static final Config CONF = AppConfig.ROOT.getConfig("grass");
 

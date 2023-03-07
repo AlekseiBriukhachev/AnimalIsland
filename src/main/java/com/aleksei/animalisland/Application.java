@@ -2,7 +2,7 @@ package com.aleksei.animalisland;
 
 
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
-import com.aleksei.animalisland.utils.Factories;
+import com.aleksei.animalisland.utils.factories.AnimalFactory;
 import com.aleksei.animalisland.view.MainWindow;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +18,7 @@ public class Application {
 //        View view = new View(controller);
 //        view.init();
 
-        Factories animalFactroy = Factories.getInstance();
+        AnimalFactory animalFactroy = AnimalFactory.getInstance();
         log.debug("Start application");
         System.out.println(animalFactroy.create(AnimalType.BEAR));
         System.out.println(animalFactroy.create(AnimalType.WOLF));

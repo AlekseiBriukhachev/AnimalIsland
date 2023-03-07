@@ -1,5 +1,6 @@
 package com.aleksei.animalisland.view;
 
+import com.aleksei.animalisland.config.AppConfig;
 import com.aleksei.animalisland.models.Location;
 import com.typesafe.config.Config;
 
@@ -7,17 +8,16 @@ import java.awt.*;
 
 public class CellDrawer implements Drawer<Location> {
 
-    private static final Config CONF = Configuration.ROOT.getConfig("cell");
+    private static final AppConfig CONF = AppConfig.getAppConfig();
 
-    public static final int SIZE = CONF.getInt("draw.size");
     private static final Color BORDER = Color.LIGHT_GRAY;
 
-    private final GrassDrawer grassDrawer = new GrassDrawer();
+    private final PlantDrawer plantDrawer = new PlantDrawer();
 
     @Override
     public void draw(Location location, Graphics2D g2d) {
-        grassDrawer.draw(location.getGrass(), g2d);
+        plantDrawer.draw(location.getPlant(), g2d);
         g2d.setColor(BORDER);
-        g2d.drawRect(0, 0, SIZE - 1, SIZE - 1);
+        g2d.drawRect(0, 0, CONF.getIslandWidth() - 1, CONF.getIslandHeight() - 1);
     }
 }

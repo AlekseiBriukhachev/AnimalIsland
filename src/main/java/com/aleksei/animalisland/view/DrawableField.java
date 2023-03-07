@@ -4,9 +4,9 @@ package com.aleksei.animalisland.view;
 
 import com.aleksei.animalisland.models.Location;
 import com.aleksei.animalisland.services.Position;
-import com.aleksei.animalisland.utils.factory.CellFactory;
-import com.aleksei.animalisland.utils.factory.DrawableZooFactory;
-import com.aleksei.animalisland.utils.factory.GrassFactory;
+import com.aleksei.animalisland.utils.factories.CellFactory;
+import com.aleksei.animalisland.utils.factories.DrawableZooFactory;
+import com.aleksei.animalisland.utils.factories.PlantFactory;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,8 +26,8 @@ public class DrawableField implements Drawable {
 
     private final List<DrawableLocation> highlightedCells = new ArrayList<>();
     private final Map<Position, DrawableLocation> drawableCells;
-    private List<DrawableRabbit> drawableRabbits = new ArrayList<>();
-    private List<DrawableWolf> drawableWolves = new ArrayList<>();
+    private List<DrawableBoar> drawableBoars = new ArrayList<>();
+    private List<DrawableBear> drawableWolves = new ArrayList<>();
 
     private DrawableField(Field field, DrawableZooFactory drawableZooFactory, Map<Position, DrawableLocation> drawableCells) {
         this.field = field;
@@ -37,13 +37,13 @@ public class DrawableField implements Drawable {
 
     public static DrawableField create(int width, int height,
                                        CellFactory cellFactory,
-                                       GrassFactory grassFactory,
+                                       PlantFactory plantFactory,
                                        DrawableZooFactory drawableZooFactory) {
         ArrayList<DrawableLocation> drawableLocations = new ArrayList<>(width * height);
         IntStream.range(0, width * height)
             .forEach(i -> {
                 Position position = Position.on(i % width, i / width);
-                drawableLocations.add(cellFactory.create(position, grassFactory.createGrass()));
+                drawableLocations.add(cellFactory.create(position, plantFactory.createGrass()));
             });
         List<Location> cells = drawableLocations.stream().map(DrawableLocation::getLocation).collect(Collectors.toList());
         Field field = new Field(width, height, cells);
@@ -55,11 +55,11 @@ public class DrawableField implements Drawable {
         field.updateCells();
 
         List<Rabbit> newRabbits = field.updateRabbits();
-        drawableRabbits = drawableRabbits.stream().filter(du -> du.getRabbit().isAlive()).collect(Collectors.toList());
-        newRabbits.forEach(newRabbit -> drawableRabbits.add(drawableZooFactory.wrap(newRabbit)));
+        drawableBoars = drawableBoars.stream().filter(du -> du.getBoar().isAlive()).collect(Collectors.toList());
+        newRabbits.forEach(newRabbit -> drawableBoars.add(drawableZooFactory.wrap(newRabbit)));
 
         List<Wolf> newWolves = field.updateWolves();
-        drawableWolves = drawableWolves.stream().filter(du -> du.getWolf().isAlive()).collect(Collectors.toList());
+        drawableWolves = drawableWolves.stream().filter(du -> du.getBear().isAlive()).collect(Collectors.toList());
         newWolves.forEach(newWolf -> drawableWolves.add(drawableZooFactory.wrap(newWolf)));
 
         long end = System.currentTimeMillis();
@@ -76,7 +76,7 @@ public class DrawableField implements Drawable {
         ));
 
         Stream.concat(
-            new ArrayList<>(drawableRabbits).stream(),
+            new ArrayList<>(drawableBoars).stream(),
             new ArrayList<>(drawableWolves).stream()
         ).collect(
             Collectors.groupingBy(du -> du.getLivingUnit().getPosition())
@@ -107,15 +107,15 @@ public class DrawableField implements Drawable {
         );
     }
 
-    public void addRabbitOn(Position position, RabbitExample example) {
-        DrawableRabbit drawable = drawableZooFactory.createRabbit(position, example, field);
-        field.addRabbit(drawable.getRabbit());
-        drawableRabbits.add(drawable);
+    public void addBoarOn(Position position, RabbitExample example) {
+        DrawableBoar drawable = drawableZooFactory.createRabbit(position, example, field);
+        field.addRabbit(drawable.getBoar());
+        drawableBoars.add(drawable);
     }
 
-    public void addWolfOn(Position position, WolfExample example) {
-        DrawableWolf drawable = drawableZooFactory.createWolf(position, example, field);
-        field.addWolf(drawable.getWolf());
+    public void addBearOn(Position position, WolfExample example) {
+        DrawableBear drawable = drawableZooFactory.createWolf(position, example, field);
+        field.addWolf(drawable.getBear());
         drawableWolves.add(drawable);
     }
 

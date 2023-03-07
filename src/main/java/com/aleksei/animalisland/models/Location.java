@@ -1,7 +1,9 @@
 package com.aleksei.animalisland.models;
 
 import com.aleksei.animalisland.services.Position;
+import lombok.Data;
 
+@Data
 public class Location {
     private final Plant plant;
     private final Position position;

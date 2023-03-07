@@ -1,6 +1,13 @@
 package com.aleksei.animalisland.view;
 
-import com.typesafe.config.Config;
+import com.aleksei.animalisland.config.AppConfig;
+import com.aleksei.animalisland.models.Animal;
+import com.aleksei.animalisland.models.animals.Bear;
+import com.aleksei.animalisland.models.animals.Boar;
+import com.aleksei.animalisland.services.Position;
+import com.aleksei.animalisland.utils.factories.CellFactory;
+import com.aleksei.animalisland.utils.factories.DrawableZooFactoryImpl;
+import com.aleksei.animalisland.utils.factories.PlantFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +22,11 @@ import static java.awt.RenderingHints.*;
 
 public class FieldVisualizationPanel extends JPanel {
 
-    private static final Config CONF = Configuration.ROOT.getConfig("field");
+    private static final AppConfig CONF = AppConfig.getAppConfig();
 
-    public static final int WIDTH = CONF.getInt("width");
-    public static final int HEIGHT = CONF.getInt("height");
+    public static final int WIDTH = CONF.getIslandWidth();
+    public static final int HEIGHT = CONF.getIslandHeight();
+    public static final int SIZE = 5;
     //
     private volatile DrawableField field;
     private volatile Timer timer;
@@ -27,20 +35,20 @@ public class FieldVisualizationPanel extends JPanel {
 
     public FieldVisualizationPanel() {
         super(true);
-        setPreferredSize(new Dimension(CellDrawer.SIZE * WIDTH + 1, CellDrawer.SIZE * HEIGHT + 1));
+        setPreferredSize(new Dimension(SIZE * WIDTH + 1, SIZE * HEIGHT + 1));
     }
 
     public void init() {
-        field = DrawableField.create(WIDTH, HEIGHT, new CellFactory(), new GrassFactory(), new DrawableZooFactoryImpl());
-        IntStream.range(0, CONF.getInt("rabbits")).forEach(i -> {
+        field = DrawableField.create(WIDTH, HEIGHT, new CellFactory(), new PlantFactory(), new DrawableZooFactoryImpl());
+        IntStream.range(0, CONF.getInitNumber(Boar.class)).forEach(i -> {
             int randX = ThreadLocalRandom.current().nextInt(WIDTH);
             int randY = ThreadLocalRandom.current().nextInt(HEIGHT);
-            field.addRabbitOn(Position.on(randX, randY), RabbitExample.random());
+            field.addBoarOn(Position.onPosition(randX, randY), BoarExample.random());
         });
-        IntStream.range(0, CONF.getInt("wolves")).forEach(i -> {
+        IntStream.range(0, CONF.getInitNumber(Bear.class)).forEach(i -> {
             int randX = ThreadLocalRandom.current().nextInt(WIDTH);
             int randY = ThreadLocalRandom.current().nextInt(HEIGHT);
-            field.addWolfOn(Position.on(randX, randY), WolfExample.random());
+            field.addBearOn(Position.onPosition(randX, randY), BearExample.random());
         });
         repaint();
     }
@@ -87,23 +95,23 @@ public class FieldVisualizationPanel extends JPanel {
         repaint();
         if (infoConsumer != null) {
             infoConsumer.accept(
-                "Rabbits: " + result.getRabbitsTotal()
-                    + ", Wolves: " + result.getWolvesTotal()
+                "Rabbits: " + result.getBoarsTotal()
+                    + ", Wolves: " + result.getBearsTotal()
                     + ", Elapsed: "
                     + result.getElapsed() + "ms");
         }
     }
 
-    public void putWolfOn(Point point, WolfExample example) {
+    public void putBearOn(Point point, BearExample example) {
         if (timer == null) {
-            field.addWolfOn(positionBy(point), example);
+            field.addBearOn(positionBy(point), example);
             repaint();
         }
     }
 
-    public void putRabbitOn(Point point, RabbitExample example) {
+    public void putBoarOn(Point point, BoarExample example) {
         if (timer == null) {
-            field.addRabbitOn(positionBy(point), example);
+            field.addBoarOn(positionBy(point), example);
             repaint();
         }
     }
@@ -116,13 +124,15 @@ public class FieldVisualizationPanel extends JPanel {
     public void showInfoAbout(Point point) {
         Position position = positionBy(point);
         JOptionPane.showMessageDialog(null, field.unitsOn(position)
-            .map(Object::toString)
+            .map((Animal<?> t) -> {
+                return Object.toString(t);
+            })
             .collect(Collectors.joining(",\n")));
     }
 
     private Position positionBy(Point point) {
-        int x = (int) (point.getX() / CellDrawer.SIZE);
-        int y = (int) (point.getY() / CellDrawer.SIZE);
-        return Position.on(x, y);
+        int x = (int) (point.getX() / SIZE);
+        int y = (int) (point.getY() / SIZE);
+        return Position.onPosition(x, y);
     }
 }
