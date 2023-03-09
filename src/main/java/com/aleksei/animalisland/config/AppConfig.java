@@ -5,15 +5,16 @@ import com.aleksei.animalisland.models.Animal;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.util.List;
 
+@Slf4j
 public final class AppConfig {
     private Config config;
     private static AppConfig appConfig;
-    private static final Logger log = Logger.getLogger(AppConfig.class);
     private static void init() {
         PropertyConfigurator.configure("log4j.properties");
     }
