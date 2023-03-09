@@ -12,7 +12,7 @@ public class PlantFactory {
     private static final int MAX = CONF.getInt("max");
     private static final int INCREASE_RATE = CONF.getInt("increaseRate");
 
-    public Plant createGrass() {
+    public Plant createPlants() {
         return new Plant(FOOD_VALUE, MAX, INCREASE_RATE);
     }
 }

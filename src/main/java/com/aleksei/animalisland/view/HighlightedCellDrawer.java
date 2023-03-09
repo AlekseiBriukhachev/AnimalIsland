@@ -2,7 +2,8 @@ package com.aleksei.animalisland.view;
 
 import java.awt.*;
 
-import static org.apache.commons.lang3.Range.between;
+import static com.aleksei.animalisland.utils.ColorUtils.between;
+
 
 public class HighlightedCellDrawer implements Drawer<DrawableLocation> {
 

@@ -19,14 +19,12 @@ public class MainWindow extends JFrame {
     private JButton stopStartButton;
     private JButton updateButton;
     private ButtonGroup bGroup;
-    private JToggleButton femaleBoarLabel;
-    private JToggleButton maleBoarLabel;
-    private JToggleButton femaleBearLabel;
-    private JToggleButton maleBearLabel;
+    private JToggleButton boarLabel;
+    private JToggleButton bearLabel;
     private FieldVisualizationPanel fieldPanel;
 
     public MainWindow() throws HeadlessException {
-        super("Siberian Forest");
+        super("Animal Island");
     }
 
     public void init() {
@@ -60,19 +58,13 @@ public class MainWindow extends JFrame {
 
         creaturePanel = new JPanel();
         creaturePanel.setLayout(new GridBagLayout());
-        femaleBoarLabel = styled(new JToggleButton("F", new ImageIcon(BoarDrawer.IMG)));
-        maleBoarLabel = styled(new JToggleButton("M", new ImageIcon(BoarDrawer.IMG)));
-        femaleBearLabel = styled(new JToggleButton("F", new ImageIcon(BearDrawer.IMG)));
-        maleBearLabel = styled(new JToggleButton("M", new ImageIcon(BearDrawer.IMG)));
+        boarLabel = styled(new JToggleButton("F", new ImageIcon(BoarDrawer.IMG)));
+        bearLabel = styled(new JToggleButton("M", new ImageIcon(BearDrawer.IMG)));
         bGroup = new ButtonGroup();
-        bGroup.add(femaleBoarLabel);
-        bGroup.add(maleBoarLabel);
-        bGroup.add(femaleBearLabel);
-        bGroup.add(maleBearLabel);
-        creaturePanel.add(femaleBoarLabel, gbc(0, 0));
-        creaturePanel.add(maleBoarLabel, gbc(1, 0));
-        creaturePanel.add(femaleBearLabel, gbc(2, 0));
-        creaturePanel.add(maleBearLabel, gbc(3, 0));
+        bGroup.add(boarLabel);
+        bGroup.add(bearLabel);
+        creaturePanel.add(boarLabel, gbc(0, 0));
+        creaturePanel.add(bearLabel, gbc(1, 0));
 
         infoLabel = new JLabel("Info");
         infoLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -94,15 +86,11 @@ public class MainWindow extends JFrame {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    if (femaleBoarLabel.isSelected()) {
-                        panel.putBoarOn(e.getPoint(), new BoarExample(Boar.ADULT, Sex.FEMALE));
-                    } else if (maleBoarLabel.isSelected()) {
-                        panel.putBoarOn(e.getPoint(), new BoarExample(Boar.ADULT, Sex.MALE));
-                    } else if (femaleBearLabel.isSelected()) {
-                        panel.putBearOn(e.getPoint(), new BearExample(Bear.ADULT, Sex.FEMALE));
-                    } else if (maleBearLabel.isSelected()) {
-                        panel.putBearOn(e.getPoint(), new BearExample(Bear.ADULT, Sex.MALE));
-                    }
+//                    if (boarLabel.isSelected()) {
+//                        panel.putBoarOn(e.getPoint(), new BoarExample(Boar.ADULT, Sex.FEMALE));
+//                    } else if (bearLabel.isSelected()) {
+//                        panel.putBearOn(e.getPoint(), new BearExample(Bear.ADULT, Sex.MALE));
+//                    }
                     if (!e.isShiftDown()) {
                         bGroup.clearSelection();
                     }

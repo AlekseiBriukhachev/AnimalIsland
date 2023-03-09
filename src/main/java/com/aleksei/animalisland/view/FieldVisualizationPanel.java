@@ -43,7 +43,7 @@ public class FieldVisualizationPanel extends JPanel {
         IntStream.range(0, CONF.getInitNumber(Boar.class)).forEach(i -> {
             int randX = ThreadLocalRandom.current().nextInt(WIDTH);
             int randY = ThreadLocalRandom.current().nextInt(HEIGHT);
-            field.addBoarOn(Position.onPosition(randX, randY), BoarExample.random());
+            field.addBoarOn(Position.onPosition(randX, randY));
         });
         IntStream.range(0, CONF.getInitNumber(Bear.class)).forEach(i -> {
             int randX = ThreadLocalRandom.current().nextInt(WIDTH);

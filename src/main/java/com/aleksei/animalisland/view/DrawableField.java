@@ -3,7 +3,9 @@ package com.aleksei.animalisland.view;
 
 
 import com.aleksei.animalisland.models.Location;
+import com.aleksei.animalisland.services.IslandService;
 import com.aleksei.animalisland.services.Position;
+import com.aleksei.animalisland.utils.UpdateResult;
 import com.aleksei.animalisland.utils.factories.CellFactory;
 import com.aleksei.animalisland.utils.factories.DrawableZooFactory;
 import com.aleksei.animalisland.utils.factories.PlantFactory;
@@ -20,7 +22,7 @@ import static java.util.stream.Collectors.toMap;
 
 public class DrawableField implements Drawable {
 
-    private final Field field;
+    private final IslandService field;
 
     private final DrawableZooFactory drawableZooFactory;
 
@@ -29,7 +31,7 @@ public class DrawableField implements Drawable {
     private List<DrawableBoar> drawableBoars = new ArrayList<>();
     private List<DrawableBear> drawableWolves = new ArrayList<>();
 
-    private DrawableField(Field field, DrawableZooFactory drawableZooFactory, Map<Position, DrawableLocation> drawableCells) {
+    private DrawableField(IslandService field, DrawableZooFactory drawableZooFactory, Map<Position, DrawableLocation> drawableCells) {
         this.field = field;
         this.drawableZooFactory = drawableZooFactory;
         this.drawableCells = drawableCells;
@@ -42,12 +44,12 @@ public class DrawableField implements Drawable {
         ArrayList<DrawableLocation> drawableLocations = new ArrayList<>(width * height);
         IntStream.range(0, width * height)
             .forEach(i -> {
-                Position position = Position.on(i % width, i / width);
-                drawableLocations.add(cellFactory.create(position, plantFactory.createGrass()));
+                Position position = Position.onPosition(i % width, i / width);
+                drawableLocations.add(cellFactory.create(position, plantFactory.createPlants()));
             });
         List<Location> cells = drawableLocations.stream().map(DrawableLocation::getLocation).collect(Collectors.toList());
-        Field field = new Field(width, height, cells);
-        return new DrawableField(field, drawableZooFactory, drawableLocations.stream().collect(toMap(c -> c.getCell().getPosition(), c -> c)));
+        IslandService field = new IslandService(width, height, cells);
+        return new DrawableField(field, drawableZooFactory, drawableLocations.stream().collect(toMap(c -> c.getLocation().getPosition(), c -> c)));
     }
 
     public UpdateResult update() {
