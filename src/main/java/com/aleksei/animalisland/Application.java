@@ -27,7 +27,7 @@ public class Application {
 
         EventQueue.invokeLater(() -> {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.init();
+//            mainWindow.init();
         });
     }
 }
