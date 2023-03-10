@@ -1,18 +1,15 @@
 package com.aleksei.animalisland.models;
 
-import com.aleksei.animalisland.repositories.Food;
-import com.aleksei.animalisland.services.Position;
-import com.aleksei.animalisland.services.Visibility;
+import com.aleksei.animalisland.models.animals.Bear;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.List;
 
 public interface AnimalEntity {
-    Map<Position, Integer> evaluate(Visibility visibility);
+//    Map<Position, Integer> evaluate(Visibility visibility);
 
-    Optional<Position> move(Visibility visibility);
+    void move();
 
-    Optional<Food> feed(Visibility visibility);
+    List<? extends Animal<?>> feed(List<? extends Animal<?>> animals);
 
-    void breed(Visibility visibility);
+//    List<? extends Animal<?>> breed();
 }
