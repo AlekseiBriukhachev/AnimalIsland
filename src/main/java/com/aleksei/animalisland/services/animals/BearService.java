@@ -46,26 +46,26 @@ public final class BearService implements AnimalService, AnimalInfo {
 //    public Map<Position, Integer> evaluate() {
 //        return controller.evaluateBear(bears);
 //    }
-    @Override
-    public void move() {
-        for (Bear bear : bears) {
-            int newX = bear.getPosition().getX() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BEAR) - 1);
-            int newY = bear.getPosition().getY() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BEAR) - 1);
+//    @Override
+//    public void move() {
+//        for (Bear bear : bears) {
+//            int newX = bear.getPosition().getX() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BEAR) - 1);
+//            int newY = bear.getPosition().getY() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BEAR) - 1);
+//
+//            if (newX >= 0 && newX < CONFIG.getIslandWidth() && newY >= 0 && newY < CONFIG.getIslandHeight()) {
+//                bear.setPosition(new Position(newX, newY));
+//            }
+//        }
+//    }
 
-            if (newX >= 0 && newX < CONFIG.getIslandWidth() && newY >= 0 && newY < CONFIG.getIslandHeight()) {
-                bear.setPosition(new Position(newX, newY));
-            }
-        }
-    }
-
-    @Override
-    public List<? extends Animal<?>> feed(List<? extends Animal<?>> animals) {
-        int eatProbability = Integer.parseInt(CONFIG.getEatingProbability(Bear.class).stream()
-                .filter(s -> animals.getClass().getSimpleName().equals(s))
-                .findFirst()
-                .get());
-        return getAnimals(animals, eatProbability);
-    }
+//    @Override
+//    public List<? extends Animal<?>> feed(List<? extends Animal<?>> animals) {
+//        int eatProbability = Integer.parseInt(CONFIG.getEatingProbability(Bear.class).stream()
+//                .filter(s -> animals.getClass().getSimpleName().equals(s))
+//                .findFirst()
+//                .get());
+//        return getAnimals(animals, eatProbability);
+//    }
 
     public List<Bear> breed(Visibility visibility) {
         if (this.gender != Gender.FEMALE) {
