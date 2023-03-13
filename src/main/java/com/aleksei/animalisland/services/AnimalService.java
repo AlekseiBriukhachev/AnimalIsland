@@ -1,14 +1,15 @@
-package com.aleksei.animalisland.models;
+package com.aleksei.animalisland.services;
 
+import com.aleksei.animalisland.models.Animal;
 import com.aleksei.animalisland.repositories.Food;
-import com.aleksei.animalisland.repositories.info.AnimalInfo;
-import com.aleksei.animalisland.services.Position;
-import com.aleksei.animalisland.services.Visibility;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface AI<T extends Animal> {
+public interface AnimalService<T extends Animal> {
+
+    List<T> feed(List<T> animals);
 
     Map<Position, Integer> evaluate(T animal, Visibility visibility);
 

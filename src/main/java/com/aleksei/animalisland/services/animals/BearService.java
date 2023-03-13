@@ -3,7 +3,8 @@ package com.aleksei.animalisland.services.animals;
 import com.aleksei.animalisland.config.AppConfig;
 import com.aleksei.animalisland.controller.IslandController;
 import com.aleksei.animalisland.models.Animal;
-import com.aleksei.animalisland.models.AnimalEntity;
+import com.aleksei.animalisland.repositories.Food;
+import com.aleksei.animalisland.services.AnimalService;
 import com.aleksei.animalisland.models.animals.Bear;
 import com.aleksei.animalisland.repositories.info.AnimalInfo;
 import com.aleksei.animalisland.services.Position;
@@ -14,14 +15,16 @@ import com.aleksei.animalisland.utils.factories.AnimalFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 import static com.aleksei.animalisland.utils.Utils.getAnimals;
 
 @Slf4j
-public final class BearService implements AnimalEntity, AnimalInfo {
+public final class BearService implements AnimalService, AnimalInfo {
     private IslandController controller;
     private final AppConfig CONFIG = AppConfig.getAppConfig();
     protected Gender gender;
@@ -88,4 +91,23 @@ public final class BearService implements AnimalEntity, AnimalInfo {
         return bears.size();
     }
 
+    @Override
+    public List feed(List animals) {
+        return null;
+    }
+
+    @Override
+    public Map<Position, Integer> evaluate(Animal animal, Visibility visibility) {
+        return null;
+    }
+
+    @Override
+    public Optional<Position> move(Animal animal, Visibility visibility) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Food> feed(Animal animal, Visibility visibility) {
+        return Optional.empty();
+    }
 }
