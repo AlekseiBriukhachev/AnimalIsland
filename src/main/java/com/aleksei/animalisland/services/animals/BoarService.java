@@ -33,8 +33,8 @@ public class BoarService {
     }
     public void move(){
         for (Boar boar : boars){
-            int newX = boar.getPosition().x() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BOAR) - 1);
-            int newY = boar.getPosition().y() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BOAR) - 1);
+            int newX = boar.getPosition().getX() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BOAR) - 1);
+            int newY = boar.getPosition().getY() + ThreadLocalRandom.current().nextInt(CONFIG.getSpeed(AnimalType.BOAR) - 1);
 
             if (newX >= 0 && newX < CONFIG.getIslandWidth() && newY >= 0 && newY < CONFIG.getIslandHeight()){
                 boar.setPosition(new Position(newX, newY));

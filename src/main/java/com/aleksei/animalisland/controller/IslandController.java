@@ -15,7 +15,7 @@ import java.util.Map;
 public class IslandController {
     private BearService bearService;
 
-    public Map<Position, Integer> evaluateBear(List<Bear> bears, Visibility visibility) {
-
-    }
+//    public Map<Position, Integer> evaluateBear(List<Bear> bears, Visibility visibility) {
+//
+//    }
 }

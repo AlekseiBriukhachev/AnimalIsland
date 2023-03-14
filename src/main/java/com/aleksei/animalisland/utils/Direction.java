@@ -28,10 +28,10 @@ public enum Direction {
                 .orElseThrow(IllegalAccessError::new);
     }
     public int deltaX(){
-        return delta.x();
+        return delta.getX();
     }
     public int deltaY(){
-        return delta.y();
+        return delta.getY();
     }
     public Direction opposite(){
         return toRelativePosition(Position.onPosition(-this.deltaX(), -this.deltaY()));
