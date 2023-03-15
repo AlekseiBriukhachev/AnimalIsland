@@ -7,14 +7,11 @@ import com.aleksei.animalisland.models.plant.Grass;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EntityConfig {
-//    private static final String FOLDER = "inhabitantprops";
-//    private static final String numberOnCell = "numberOnCell";
-    private static final AppConfig CONFIG = AppConfig.getAppConfig();
+    private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
 
     public final List<Class<? extends EntityAI>> entityClassList = List.of(Wolf.class, Snake.class, Fox.class,
             Bear.class, Eagle.class, Horse.class, Deer.class, Rabbit.class, Mouse.class, Goat.class, Sheep.class,
@@ -26,10 +23,10 @@ public class EntityConfig {
     public final Map<Class<? extends EntityAI>, Integer> maxNumberOnCellMap =
             new HashMap<>();
 
-//    {
-//        fillEatingProbability();
-//        fillMaxNumberOnCellMap();
-//    }
+    {
+        fillEatingProbability();
+        fillMaxNumberOnCellMap();
+    }
 
     private void fillEatingProbability() {
         for (Class<? extends EntityAI> entityClass : entityClassList) {

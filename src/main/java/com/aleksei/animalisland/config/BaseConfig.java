@@ -12,31 +12,31 @@ import org.apache.log4j.PropertyConfigurator;
 import java.util.Arrays;
 
 @Slf4j
-public final class AppConfig {
+public final class BaseConfig {
     private Config config;
-    private static AppConfig appConfig;
+    private static BaseConfig baseConfig;
     private static void init() {
-        PropertyConfigurator.configure("/log4j.properties");
+        PropertyConfigurator.configure("log4j.properties");
     }
 
-    private AppConfig(Config config) {
+    private BaseConfig(Config config) {
+        log.debug("Create configuration");
         this.config = config;
         config.checkValid(ConfigFactory.defaultReference(), "island-simulation");
-        init();
-        log.debug("Create configuration");
+//        init();
 
     }
 
-    private AppConfig() {
+    private BaseConfig() {
         this(ConfigFactory.load());
         log.debug("Load configuration file");
 
     }
-    public static AppConfig getAppConfig(){
-        if (appConfig == null){
-            appConfig = new AppConfig();
+    public static BaseConfig getAppConfig(){
+        if (baseConfig == null){
+            baseConfig = new BaseConfig();
         }
-        return appConfig;
+        return baseConfig;
     }
 
     public double getWeight(AnimalType type) {
@@ -72,5 +72,11 @@ public final class AppConfig {
 
     public int getIslandHeight() {
         return config.getInt("island.height");
+    }
+    public int getIslandX(){
+        return config.getInt("island.x");
+    }
+    public int getIslandY(){
+        return config.getInt("island.y");
     }
 }

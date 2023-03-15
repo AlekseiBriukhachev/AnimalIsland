@@ -9,4 +9,5 @@ public class Bear extends Animal implements Predator {
         super("Bear", "\uD83D\uDC3B", weight
                 , speed, foodAmount);
     }
+
 }
