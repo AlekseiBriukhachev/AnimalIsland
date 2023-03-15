@@ -9,10 +9,10 @@ public abstract class Animal extends EntityAI implements Predator, Herbivore {
     private int speed;
     @Getter
     @Setter
-    private float foodAmount;
+    private double foodAmount;
 
-    public Animal(String name, String symbol, float weight
-            , int speed, float foodAmount) {
+    public Animal(String name, String symbol, double weight
+            , int speed, double foodAmount) {
         super(name, symbol, weight);
         this.speed = speed;
         this.foodAmount = foodAmount;

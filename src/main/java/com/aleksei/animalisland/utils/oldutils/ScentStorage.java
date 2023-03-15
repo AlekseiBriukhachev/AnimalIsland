@@ -1,12 +1,11 @@
-package com.aleksei.animalisland.utils;
+package com.aleksei.animalisland.utils.oldutils;
 
 
-import com.aleksei.animalisland.models.Scent;
-import com.aleksei.animalisland.services.Position;
+
 
 public interface ScentStorage {
 
-    Scent get(Position position);
-
-    void update(Position position);
+//    Scent get(Position position);
+//
+//    void update(Position position);
 }

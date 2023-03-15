@@ -10,6 +10,6 @@ public class RegularEntityFactory implements EntityFactory {
 
     @Override
     public EntityAI create(Location location) {
-        return new Bear();
+        return null;
     }
 }
