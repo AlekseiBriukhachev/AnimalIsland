@@ -1,9 +1,7 @@
 package com.aleksei.animalisland.config;
 
 
-import com.aleksei.animalisland.models.animal.EntityAI;
-import com.aleksei.animalisland.models.animal.herbivore.*;
-import com.aleksei.animalisland.models.animal.raptor.*;
+import com.aleksei.animalisland.models.animals.*;
 import com.aleksei.animalisland.models.plant.Grass;
 
 import java.util.HashMap;

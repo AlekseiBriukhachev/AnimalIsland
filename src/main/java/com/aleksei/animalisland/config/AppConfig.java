@@ -1,12 +1,11 @@
 package com.aleksei.animalisland.config;
 
 
-import com.aleksei.animalisland.models.Animal;
+import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.util.List;
@@ -16,19 +15,19 @@ public final class AppConfig {
     private Config config;
     private static AppConfig appConfig;
     private static void init() {
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4j.xml");
     }
 
     private AppConfig(Config config) {
         this.config = config;
         config.checkValid(ConfigFactory.defaultReference(), "island-simulation");
-        log.info("Create configuration");
+        log.debug("Create configuration");
 
     }
 
     private AppConfig() {
         this(ConfigFactory.load());
-        log.info("Load configuration file");
+        log.debug("Load configuration file");
 
     }
     public static AppConfig getAppConfig(){
@@ -48,7 +47,7 @@ public final class AppConfig {
         return config.getInt(type.name().toLowerCase() + ".speed");
     }
     public double getFoodQuantity(AnimalType type) {
-        return config.getDouble(type.name().toLowerCase() + ".foodQuantity");
+        return config.getDouble(type.name().toLowerCase() + ".foodAmount");
     }
     public int getInitNumber(Class<? extends Animal> aClass){
         return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");

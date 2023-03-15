@@ -2,8 +2,8 @@ package com.aleksei.animalisland.services;
 
 
 import com.aleksei.animalisland.models.Island.Location;
-import com.aleksei.animalisland.models.animal.Animal;
-import com.aleksei.animalisland.models.animal.EntityAI;
+import com.aleksei.animalisland.models.animals.Animal;
+import com.aleksei.animalisland.models.animals.EntityAI;
 import com.aleksei.animalisland.config.EntityConfig;
 import com.aleksei.animalisland.models.plant.Plant;
 

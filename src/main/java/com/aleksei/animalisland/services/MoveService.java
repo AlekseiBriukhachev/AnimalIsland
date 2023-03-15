@@ -3,7 +3,7 @@ package com.aleksei.animalisland.services;
 
 import com.aleksei.animalisland.models.Island.Location;
 import com.aleksei.animalisland.models.Island.Island;
-import com.aleksei.animalisland.models.animal.Animal;
+import com.aleksei.animalisland.models.animals.Animal;
 
 public class MoveService {
 

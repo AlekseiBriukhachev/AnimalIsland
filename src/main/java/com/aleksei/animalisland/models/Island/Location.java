@@ -1,7 +1,7 @@
 package com.aleksei.animalisland.models.Island;
 
 
-import com.aleksei.animalisland.models.animal.Animal;
+import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.plant.Plant;
 import lombok.Getter;
 

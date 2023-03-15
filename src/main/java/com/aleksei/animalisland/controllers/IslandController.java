@@ -2,7 +2,7 @@ package com.aleksei.animalisland.controllers;
 
 
 
-import com.aleksei.animalisland.utils.IslandFactory;
+import com.aleksei.animalisland.utils.factories.IslandFactory;
 import com.aleksei.animalisland.models.Island.Island;
 import com.aleksei.animalisland.services.MoveService;
 import com.aleksei.animalisland.view.View;
