@@ -1,4 +1,4 @@
-package com.aleksei.animalisland.models.Island;
+package com.aleksei.animalisland.config;
 
 
 import com.aleksei.animalisland.config.BaseProperties;

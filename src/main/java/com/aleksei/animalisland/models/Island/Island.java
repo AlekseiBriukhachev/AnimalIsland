@@ -1,5 +1,7 @@
 package com.aleksei.animalisland.models.Island;
 
+import com.aleksei.animalisland.config.IslandConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
