@@ -21,7 +21,7 @@ public class IslandApp {
         System.out.println(animalFactory.create(AnimalType.BEAR).getFoodAmount());
         System.out.println(Arrays.toString(CONFIG.getEatingProbability(Bear.class)));
 
-//        System.out.println(entity.getEatingProbability(Bear.class));
+        System.out.println(entity.getEatingProbability(Bear.class).toString());
 
 //        new Thread(new StartService()).start();
     }

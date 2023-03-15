@@ -16,9 +16,9 @@ public class EntityConfig {
 //    private static final String numberOnCell = "numberOnCell";
     private static final AppConfig CONFIG = AppConfig.getAppConfig();
 
-    public final List<Class<? extends EntityAI>> entityClassList = List.of(Buffalo.class, Bear.class,
-            Caterpillar.class, Deer.class, Duck.class, Eagle.class, Fox.class, Goat.class, Horse.class,
-            Mouse.class, Rabbit.class, Sheep.class, Snake.class, Wolf.class, Boar.class, Grass.class);
+    public final List<Class<? extends EntityAI>> entityClassList = List.of(Wolf.class, Snake.class, Fox.class,
+            Bear.class, Eagle.class, Horse.class, Deer.class, Rabbit.class, Mouse.class, Goat.class, Sheep.class,
+            Boar.class, Buffalo.class, Duck.class, Caterpillar.class, Grass.class);
 
     public final Map<Class<? extends EntityAI>, Map<Class<? extends EntityAI>, Integer>> eatingProbabilityMap =
             new HashMap<>();
@@ -26,10 +26,10 @@ public class EntityConfig {
     public final Map<Class<? extends EntityAI>, Integer> maxNumberOnCellMap =
             new HashMap<>();
 
-    {
-        fillEatingProbability();
-        fillMaxNumberOnCellMap();
-    }
+//    {
+//        fillEatingProbability();
+//        fillMaxNumberOnCellMap();
+//    }
 
     private void fillEatingProbability() {
         for (Class<? extends EntityAI> entityClass : entityClassList) {
@@ -38,23 +38,19 @@ public class EntityConfig {
     }
 
     private void fillMaxNumberOnCellMap() {
-//        BaseProperties reader = new BaseProperties(FOLDER);
         for (Class<? extends EntityAI> entityClass : entityClassList) {
-//            Properties maxNumberOnCellProps = reader.loadProperties(entityClass.getSimpleName().toLowerCase());
             Integer maxNumberOnCell = CONFIG.getMaxNumberPerLocation(entityClass.getSimpleName().toLowerCase());
 
-//                    Integer.valueOf(maxNumberOnCellProps.getProperty(numberOnCell));
             maxNumberOnCellMap.put(entityClass, maxNumberOnCell);
         }
     }
 
     public Map<Class<? extends EntityAI>, Integer> getEatingProbability(Class<? extends EntityAI> hunterClass) {
 
-        List<String> eatingProbability = List.of(CONFIG.getEatingProbability(hunterClass));
+        int[] eatingProbability = CONFIG.getEatingProbability(hunterClass);
 
-//        return IntStream.range(0, entityClassList.size())
-//                .boxed()
-//                .collect(Collectors.toMap(entityClassList::get, eatingProbability::get))
-        return null;
+        return IntStream.range(0, entityClassList.size())
+                .boxed()
+                .collect(Collectors.toMap(entityClassList::get, i -> eatingProbability[i], (a, b) -> b));
     }
 }

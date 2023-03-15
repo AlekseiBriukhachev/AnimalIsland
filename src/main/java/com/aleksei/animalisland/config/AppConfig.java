@@ -10,19 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 public final class AppConfig {
     private Config config;
     private static AppConfig appConfig;
     private static void init() {
-        PropertyConfigurator.configure("log4j.xml");
+        PropertyConfigurator.configure("/log4j.properties");
     }
 
     private AppConfig(Config config) {
         this.config = config;
         config.checkValid(ConfigFactory.defaultReference(), "island-simulation");
+        init();
         log.debug("Create configuration");
 
     }
@@ -54,15 +54,12 @@ public final class AppConfig {
     public int getInitNumber(Class<? extends Animal> aClass){
         return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");
     }
-    public String[] getEatingProbability(Class<? extends EntityAI> aClass){
+    public int[] getEatingProbability(Class<? extends EntityAI> aClass){
 
-        String[] eatPro = new String[]{config.getString(aClass.getSimpleName().toLowerCase() + ".eatProbability")};
+        String strEatProbability = config.getString(aClass.getSimpleName().toLowerCase() + ".eatProbability");
+        String[] splitStr = strEatProbability.split(", ");
 
-        return eatPro;
-
-//        return Arrays.stream(new String[]{config.getString(aClass.getSimpleName().toLowerCase() + ".eatProbability")})
-//                .map(Integer::valueOf)
-//                .toList();
+        return Arrays.stream(splitStr).mapToInt(Integer::parseInt).toArray();
     }
 
     public int getLocationSize() {
