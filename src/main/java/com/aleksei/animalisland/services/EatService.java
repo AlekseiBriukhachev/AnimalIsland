@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class EatService {
     private Location location;
-    private final EntityConfig entityConfig = new EntityConfig();
+//    private final EntityConfig entityConfig = new EntityConfig();
 
     public void animalEat(Location location) {
         this.location = location;
@@ -38,20 +38,20 @@ public class EatService {
         }
     }
 
-    private void removeAnimal(Class<? extends EntityAI> entityAI) {
-        if (entityAI.isAssignableFrom(Animal.class)) {
+    private void removeAnimal(EntityAI entityAI) {
+        if (entityAI instanceof Animal) {
             for (Animal animal : location.getAnimals()) {
-                if (animal.getClass().equals(entityAI)) {
+                if (animal.equals(entityAI)) {
                     location.getAnimals().remove(animal);
-                    log.info(entityAI.getSimpleName() + " eat " + animal.getName());
+                    log.info(entityAI.getName() + " eat " + animal.getName());
                     break;
                 }
             }
         } else {
             for (Plant plant : location.getPlants()) {
-                if (plant.getClass().equals(entityAI)) {
+                if (plant.equals(entityAI)) {
                     location.getPlants().remove(plant);
-                    log.info(entityAI.getSimpleName() + " eat " + plant.getName());
+                    log.info(entityAI.getName() + " eat " + plant.getName());
                     break;
                 }
             }
