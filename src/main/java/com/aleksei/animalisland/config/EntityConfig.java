@@ -3,6 +3,7 @@ package com.aleksei.animalisland.config;
 
 import com.aleksei.animalisland.models.animals.*;
 import com.aleksei.animalisland.models.plant.Grass;
+import com.aleksei.animalisland.models.plant.Plant;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +14,7 @@ import java.util.stream.IntStream;
 public class EntityConfig {
     private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
 
-    public final List<Class<? extends EntityAI>> entityClassList = List.of(Wolf.class, Snake.class, Fox.class,
-            Bear.class, Eagle.class, Horse.class, Deer.class, Rabbit.class, Mouse.class, Goat.class, Sheep.class,
-            Boar.class, Buffalo.class, Duck.class, Caterpillar.class, Grass.class);
+    public final List<Class<? extends EntityAI>> entityClassList = List.of(Wolf.class, Rabbit.class, Grass.class);
 
     public final Map<Class<? extends EntityAI>, Map<Class<? extends EntityAI>, Integer>> eatingProbabilityMap =
             new HashMap<>();

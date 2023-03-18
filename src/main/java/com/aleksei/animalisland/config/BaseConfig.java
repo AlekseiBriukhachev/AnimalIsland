@@ -12,9 +12,10 @@ import org.apache.log4j.PropertyConfigurator;
 import java.util.Arrays;
 
 @Slf4j
-public final class BaseConfig {
+public final class BaseConfig<T extends EntityAI> {
     private Config config;
     private static BaseConfig baseConfig;
+
     private static void init() {
         PropertyConfigurator.configure("log4j.properties");
     }
@@ -32,8 +33,9 @@ public final class BaseConfig {
         log.debug("Load configuration file");
 
     }
-    public static BaseConfig getAppConfig(){
-        if (baseConfig == null){
+
+    public static BaseConfig getAppConfig() {
+        if (baseConfig == null) {
             baseConfig = new BaseConfig();
         }
         return baseConfig;
@@ -42,19 +44,27 @@ public final class BaseConfig {
     public double getWeight(AnimalType type) {
         return config.getDouble(type.name().toLowerCase() + ".weight");
     }
+
     public int getMaxNumberPerLocation(String animal) {
-        return config.getInt( animal+ ".maxNumberPerLocation");
+        return config.getInt(animal + ".maxNumberPerLocation");
     }
+
     public int getSpeed(AnimalType type) {
         return config.getInt(type.name().toLowerCase() + ".speed");
     }
+
     public double getFoodQuantity(AnimalType type) {
         return config.getDouble(type.name().toLowerCase() + ".foodAmount");
     }
-    public int getInitNumber(Class<? extends Animal> aClass){
+    public int getPlantAmountWeight(){
+        return config.getInt("grass.weight");
+    }
+
+    public int getInitNumber(Class<? extends Animal> aClass) {
         return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");
     }
-    public int[] getEatingProbability(Class<? extends EntityAI> aClass){
+
+    public int[] getEatingProbability(Class<? extends EntityAI> aClass) {
 
         String strEatProbability = config.getString(aClass.getSimpleName().toLowerCase() + ".eatProbability");
         String[] splitStr = strEatProbability.split(", ");
@@ -73,10 +83,12 @@ public final class BaseConfig {
     public int getIslandHeight() {
         return config.getInt("island.height");
     }
-    public int getIslandX(){
+
+    public int getIslandX() {
         return config.getInt("island.x");
     }
-    public int getIslandY(){
+
+    public int getIslandY() {
         return config.getInt("island.y");
     }
 }
