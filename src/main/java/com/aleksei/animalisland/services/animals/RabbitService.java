@@ -13,37 +13,44 @@ import com.aleksei.animalisland.repository.RabbitInfo;
 import com.aleksei.animalisland.utils.stats.NumberGaugeInfo;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+
 @Slf4j
-public final class RabbitService implements AnimalService<AnimalInfo>, RabbitInfo, Food {
+public final class RabbitService implements AnimalService<AnimalInfo>, Food {
     private final BaseConfig CONFIG = BaseConfig.getAppConfig();
     private final EntityConfig entityConfig = new EntityConfig();
 
 
-    private boolean isHungry(AnimalInfo info) {
-        return info.health().part() < 0.5d;
-
-    }
-
     @Override
-    public NumberGaugeInfo health() {
-        return null;
-    }
+    public void feed(Location location) {
+        updateGauges(location);
+        double plantsAmountOnLocation = location.getPlants().size() * CONFIG.getPlantAmountWeight();
+        double rabbitEat = 0;
 
-    @Override
-    public void feed(Location location, AnimalInfo info) {
-        int plantsAmountOnLocation = location.getPlants().size() * CONFIG.getPlantAmountWeight();
         if (plantsAmountOnLocation > 0) {
-
             for (Rabbit rabbit : location.getRabbits()) {
-                double rabbitEat = 0;
-                if (isHungry(info)) {
-                    rabbitEat = plantsAmountOnLocation - CONFIG.getFoodQuantity(AnimalType.RABBIT);
+
+                if (rabbit.isHungry()) {
+                    plantsAmountOnLocation -= CONFIG.getFoodQuantity(AnimalType.RABBIT);
+                    rabbitEat += CONFIG.getFoodQuantity(AnimalType.RABBIT);
                     log.info("Rabbit eat grass");
                 }
                 if (rabbitEat > plantsAmountOnLocation) {
                     break;
                 }
             }
+            for (int i = 0; i < rabbitEat; i++) {
+                location.getPlants().remove(i);
+            }
         }
     }
+
+    private void updateGauges(Location location) {
+        for (Rabbit rabbit : location.getRabbits()) {
+            rabbit.getHealth().minus(10);
+        }
+
+    }
+
 }

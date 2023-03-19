@@ -18,8 +18,8 @@ public class CellController {
     private final WolfService wolfService = new WolfService();
 
     public void animalEat(Location location) {
-        wolfService.feed(location, (WolfInfo) this);
-        rabbitService.feed(location, (RabbitInfo) this);
+        wolfService.feed(location);
+        rabbitService.feed(location);
 //        eatService.animalEat(location);
 
     }

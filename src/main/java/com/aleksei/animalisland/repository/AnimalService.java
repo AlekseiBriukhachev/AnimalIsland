@@ -7,13 +7,12 @@ import com.aleksei.animalisland.models.animals.Animal;
 
 import java.util.Optional;
 
-public interface AnimalService<T extends Animal> extends AnimalInfo {
+public interface AnimalService<T extends AnimalInfo> {
 
-//    List<T> feed(List<T> animals);
+    void feed(Location location);
 
 //    Map<Position, Integer> evaluate(T animal, Visibility visibility);
 //
-//    Optional<Position> move(T animal, Visibility visibility);
 
-    void feed(Location location, T info);
+//    Optional<Position> move(T animal, Visibility visibility);
 }

@@ -23,7 +23,7 @@ public final class WolfService implements AnimalService<WolfInfo> {
     private final EntityConfig entityConfig = new EntityConfig();
 
     @Override
-    public void feed(Location location, WolfInfo info) {
+    public void feed(Location location) {
 
         for (Animal entity : location.getAnimals()) {
             Food food = entity instanceof Food ? (Food) entity : null;
@@ -60,12 +60,6 @@ public final class WolfService implements AnimalService<WolfInfo> {
 //
 //            }
 //        }
-    }
-
-    private void eatEntity(Food entity) {
-        int eatProbability = Integer.parseInt(Arrays.toString(CONFIG.getEatingProbability(Wolf.class)));
-//        Food food = entity.getClass();
-        System.out.println(eatProbability);
     }
 
 

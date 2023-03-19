@@ -31,7 +31,7 @@ public final class BearService implements AnimalService<BearInfo> {
                 .toList();
     }
     @Override
-    public void feed(Location location, BearInfo info) {
+    public void feed(Location location) {
         for (Animal entity : location.getAnimals()) {
             Food food = entity instanceof Food ? (Food) entity : null;
             int[] eatProbability = CONFIG.getEatingProbability(Bear.class);

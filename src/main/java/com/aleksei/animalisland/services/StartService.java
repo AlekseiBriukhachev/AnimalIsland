@@ -19,7 +19,7 @@ public class StartService implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        service.scheduleAtFixedRate(islandController::animalEat, 0, 9, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(islandController::animalEat, 0, 3, TimeUnit.SECONDS);
 //        service.scheduleAtFixedRate(islandController::grassGrow, 3, 12, TimeUnit.SECONDS);
 //        service.scheduleAtFixedRate(islandController::animalMove, 6, 15, TimeUnit.SECONDS);
 //        service.scheduleAtFixedRate(islandController::animalReproduction, 9, 18, TimeUnit.SECONDS);

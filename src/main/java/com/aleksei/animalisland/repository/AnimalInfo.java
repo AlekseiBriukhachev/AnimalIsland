@@ -4,7 +4,7 @@ import java.util.Optional;
 import com.aleksei.animalisland.utils.stats.NumberGaugeInfo;
 
 public interface AnimalInfo {
-    NumberGaugeInfo health();
+    NumberGaugeInfo getHealth();
 
 //    boolean adult();
 
