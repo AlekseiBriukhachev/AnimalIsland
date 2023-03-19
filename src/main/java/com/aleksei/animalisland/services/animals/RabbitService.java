@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
-public final class RabbitService implements AnimalService<AnimalInfo>, Food {
+public final class RabbitService implements AnimalService<AnimalInfo>{
     private final BaseConfig CONFIG = BaseConfig.getAppConfig();
     private final EntityConfig entityConfig = new EntityConfig();
 
