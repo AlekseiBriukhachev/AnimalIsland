@@ -1,18 +1,9 @@
 package com.aleksei.animalisland.models.animals;
 
 
-import com.aleksei.animalisland.models.Animal;
-
-public class Snake extends Animal {
-    public Snake(double weight, int speed, double foodQuantity) {
-        super(weight, speed, foodQuantity);
-    }
-    @Override
-    public String toString() {
-        return "Snake{"
-                + this.getSpeed() + ", "
-                + this.getWeight() + ", "
-                + this.getFoodQuantity()
-                + "}";
+public class Snake extends Animal implements Predator {
+    public Snake(int weight, int speed, int foodQuantity) {
+        super("Snake", "\uD83D\uDC0D", weight
+                , speed, foodQuantity);
     }
 }

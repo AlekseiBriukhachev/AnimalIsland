@@ -1,6 +1,6 @@
 package com.aleksei.animalisland.utils.exceptions;
 
-public class UnknownAnimalException extends Exception {
+public class UnknownAnimalException extends RuntimeException {
     public UnknownAnimalException(String message){
         super(message);
     }

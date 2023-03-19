@@ -1,35 +1,13 @@
 package com.aleksei.animalisland.models.animals;
 
 
-import com.aleksei.animalisland.models.Animal;
-import com.aleksei.animalisland.models.Location;
-import com.aleksei.animalisland.services.Position;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.aleksei.animalisland.models.animals.Animal;
+import com.aleksei.animalisland.models.animals.Predator;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-public class Bear extends Animal {
-    @Getter
-    @Setter
-    private Position position;
-
-
-    public Bear(double weight, int speed, double foodQuantity) {
-        super(weight, speed, foodQuantity);
-        this.position = new Position(
-                ThreadLocalRandom.current().nextInt(),
-                ThreadLocalRandom.current().nextInt()
-        );
+public class Bear extends Animal implements Predator {
+    public Bear(double weight, int speed, double foodAmount) {
+        super("Bear", "\uD83D\uDC3B", weight
+                , speed, foodAmount);
     }
 
-    @Override
-    public String toString() {
-        return "Bear{"
-                + this.getSpeed() + ", "
-                + this.getWeight() + ", "
-                + this.getFoodQuantity()
-                + "}";
-    }
 }

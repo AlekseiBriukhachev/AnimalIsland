@@ -10,8 +10,8 @@ target/
 *.jrtc
 *.class
 *.info
-*.properties
 *.jar
 /out.log
 /out.log.*
 /out/
+/logs/
