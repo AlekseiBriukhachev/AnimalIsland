@@ -8,7 +8,6 @@ target/
 *.iml
 *.iws
 *.jrtc
-*.java
 *.class
 *.info
 *.properties
@@ -16,5 +15,3 @@ target/
 /out.log
 /out.log.*
 /out/
-/out/
-/.idea/
