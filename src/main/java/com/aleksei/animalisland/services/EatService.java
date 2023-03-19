@@ -6,6 +6,7 @@ import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.EntityAI;
 import com.aleksei.animalisland.config.EntityConfig;
 import com.aleksei.animalisland.models.plant.Plant;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class EatService {
     private Location location;
-//    private final EntityConfig entityConfig = new EntityConfig();
+    private final EntityConfig entityConfig = new EntityConfig();
 
     public void animalEat(Location location) {
         this.location = location;
@@ -23,6 +24,7 @@ public class EatService {
         }
     }
 
+    @SneakyThrows
     private void getAnimalEat(Animal hunter) {
         Map<Class<? extends EntityAI>, Integer> victimMap =
                 entityConfig.eatingProbabilityMap.get(hunter.getClass());
@@ -32,7 +34,7 @@ public class EatService {
                     || victimEntry.getValue() == 100) {
 //                log.info("Animal is hunting");
 
-                    removeAnimal(victimEntry.getKey());//getConstructor().newInstance());
+                    removeAnimal(victimEntry.getKey().getConstructor().newInstance());
 
             }
         }

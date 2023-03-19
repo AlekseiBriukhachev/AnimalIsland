@@ -1,4 +1,4 @@
-package com.briukhachev.aleksei.animalfactory;
+package com.aleksei.animalisland.utils.enumartion;
 
 
 public enum AnimalType {
