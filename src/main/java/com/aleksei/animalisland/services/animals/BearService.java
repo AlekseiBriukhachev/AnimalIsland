@@ -3,20 +3,13 @@ package com.aleksei.animalisland.services.animals;
 
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.Bear;
-import com.aleksei.animalisland.services.AnimalService;
-import com.aleksei.animalisland.utils.Gender;
-import com.aleksei.animalisland.utils.enumartion.AnimalType;
-import com.aleksei.animalisland.utils.factories.AnimalFactory;
+import com.aleksei.animalisland.repository.AnimalService;
 import com.aleksei.animalisland.config.BaseConfig;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Slf4j
 public final class BearService implements AnimalService {
