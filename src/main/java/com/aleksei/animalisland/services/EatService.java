@@ -8,13 +8,14 @@ import com.aleksei.animalisland.config.EntityConfig;
 import com.aleksei.animalisland.models.plant.Plant;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 public class EatService {
     private Location location;
-//    private final EntityConfig entityConfig = new EntityConfig();
+    private final EntityConfig entityConfig = new EntityConfig();
 
     public void animalEat(Location location) {
         this.location = location;
@@ -32,7 +33,21 @@ public class EatService {
                     || victimEntry.getValue() == 100) {
 //                log.info("Animal is hunting");
 
-                    removeAnimal(victimEntry.getKey());//getConstructor().newInstance());
+                try {
+                    removeAnimal(victimEntry.getKey().getConstructor().newInstance());
+                } catch (InstantiationException e) {
+                    log.error("InstantiationException");
+                    throw new RuntimeException(e);
+                } catch (IllegalAccessException e) {
+                    log.error("IllegalAccessException");
+                    throw new RuntimeException(e);
+                } catch (InvocationTargetException e) {
+                    log.error("InvocationTargetException");
+                    throw new RuntimeException(e);
+                } catch (NoSuchMethodException e) {
+                    log.error("NoSuchMethodException");
+                    throw new RuntimeException(e);
+                }
 
             }
         }
