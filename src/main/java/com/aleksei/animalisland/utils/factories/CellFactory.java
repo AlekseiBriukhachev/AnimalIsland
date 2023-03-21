@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 
 
 public class CellFactory {
-    private final EntityConfig entityConfig = new EntityConfig();
+    private final EntityConfig entityConfig = EntityConfig.getInstance();
 
     public Location createCell() {
         Location location = new Location();

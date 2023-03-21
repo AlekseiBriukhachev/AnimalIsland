@@ -39,17 +39,17 @@ public final class BaseConfig {
         return baseConfig;
     }
 
-    public double getWeight(AnimalType type) {
-        return config.getDouble(type.name().toLowerCase() + ".weight");
+    public double getWeight(Class<? extends Animal> aClass) {
+        return config.getDouble(aClass.getSimpleName().toLowerCase() + ".weight");
     }
     public int getMaxNumberPerLocation(String animal) {
         return config.getInt( animal+ ".maxNumberPerLocation");
     }
-    public int getSpeed(AnimalType type) {
-        return config.getInt(type.name().toLowerCase() + ".speed");
+    public int getSpeed(Class<? extends Animal> aClass) {
+        return config.getInt(aClass.getSimpleName().toLowerCase() + ".speed");
     }
-    public double getFoodQuantity(AnimalType type) {
-        return config.getDouble(type.name().toLowerCase() + ".foodAmount");
+    public double getFoodQuantity(Class<? extends Animal> aClass) {
+        return config.getDouble(aClass.getSimpleName().toLowerCase() + ".foodAmount");
     }
     public int getInitNumber(Class<? extends Animal> aClass){
         return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");

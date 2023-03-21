@@ -17,5 +17,7 @@ public abstract class Animal extends EntityAI implements Predator, Herbivore {
         this.speed = speed;
         this.foodAmount = foodAmount;
     }
+    public Animal(){
+    }
 
 }

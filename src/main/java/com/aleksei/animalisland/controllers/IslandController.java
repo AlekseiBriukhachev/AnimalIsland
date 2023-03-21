@@ -2,6 +2,7 @@ package com.aleksei.animalisland.controllers;
 
 
 
+import com.aleksei.animalisland.services.ControlService;
 import com.aleksei.animalisland.utils.factories.IslandFactory;
 import com.aleksei.animalisland.models.Island.Island;
 import com.aleksei.animalisland.services.MoveService;
@@ -15,7 +16,7 @@ public class IslandController {
     private final MoveService moveService = new MoveService();
     private final IslandFactory islandFactory = new IslandFactory();
     private static Island island;
-    private final CellController cellController = new CellController();
+    private final ControlService controlService = new ControlService();
 
     {
         island = islandFactory.getInitialIsland();
@@ -28,7 +29,7 @@ public class IslandController {
     public void animalEat() {
         island.getIsland().stream()
                 .flatMap(Collection::stream)
-                .forEach(cellController::animalEat);
+                .forEach(controlService::animalEat);
         view.printIsland(island, "Animal Eat!");
     }
 
@@ -40,14 +41,14 @@ public class IslandController {
     public void grassGrow() {
         island.getIsland().stream()
                 .flatMap(Collection::stream)
-                .forEach(cellController::grassGrow);
+                .forEach(controlService::grassGrow);
         view.printIsland(island, "Grass Grow!");
     }
 
     public void animalReproduction() {
         island.getIsland().stream()
                 .flatMap(Collection::stream)
-                .forEach(cellController::animalReproduction);
+                .forEach(controlService::animalReproduction);
         view.printIsland(island, "Animal Reproduction!");
     }
 }

@@ -1,11 +1,10 @@
 package com.aleksei.animalisland.services;
 
 
+import com.aleksei.animalisland.config.EntityConfig;
 import com.aleksei.animalisland.models.Island.Location;
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.EntityAI;
-import com.aleksei.animalisland.config.EntityConfig;
-import com.aleksei.animalisland.models.plant.Plant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,37 +14,40 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class EatService {
     private Location location;
-    private final EntityConfig entityConfig = new EntityConfig();
+    private final EntityConfig entityConfig = EntityConfig.getInstance();
 
     public void animalEat(Location location) {
         this.location = location;
         for (int i = 0; i < location.getAnimals().size(); i++) {
-            getAnimalEat(location.getAnimals().get(i));
+            animalHunt(location.getAnimals().get(i));
         }
     }
 
-    private void getAnimalEat(Animal hunter) {
+    private void animalHunt(Animal hunter) {
         Map<Class<? extends EntityAI>, Integer> victimMap =
                 entityConfig.eatingProbabilityMap.get(hunter.getClass());
         for (Map.Entry<Class<? extends EntityAI>, Integer> victimEntry : victimMap.entrySet()) {
             int randomProbability = ThreadLocalRandom.current().nextInt(100);
-            if (victimEntry.getValue() != 0 && randomProbability >= victimEntry.getValue()
-                    || victimEntry.getValue() == 100) {
-//                log.info("Animal is hunting");
+
+            if (victimEntry.getValue() != 0 && victimEntry.getValue() >= randomProbability){
 
                 try {
-                    removeAnimal(victimEntry.getKey().getConstructor().newInstance());
+                    EntityAI entityAI = victimEntry.getKey().getConstructor().newInstance();
+                    log.info(hunter.getName() + " eat " + entityAI.getName() + " with probability " + randomProbability + ". " + hunter.getName() + " power is " + victimEntry.getValue());
+
+                    removeEntity(entityAI);
+
                 } catch (InstantiationException e) {
-                    log.error("InstantiationException");
+                    log.error("TEST - InstantiationException");
                     throw new RuntimeException(e);
                 } catch (IllegalAccessException e) {
-                    log.error("IllegalAccessException");
+                    log.error("TEST - IllegalAccessException");
                     throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
-                    log.error("InvocationTargetException");
+                    log.error("TEST - InvocationTargetException");
                     throw new RuntimeException(e);
                 } catch (NoSuchMethodException e) {
-                    log.error("NoSuchMethodException");
+                    log.error("TEST - NoSuchMethodException");
                     throw new RuntimeException(e);
                 }
 
@@ -53,23 +55,11 @@ public class EatService {
         }
     }
 
-    private void removeAnimal(EntityAI entityAI) {
+    private void removeEntity(EntityAI entityAI) {
         if (entityAI instanceof Animal) {
-            for (Animal animal : location.getAnimals()) {
-                if (animal.equals(entityAI)) {
-                    location.getAnimals().remove(animal);
-                    log.info(entityAI.getName() + " eat " + animal.getName());
-                    break;
-                }
-            }
+                    location.getAnimals().remove(entityAI);
         } else {
-            for (Plant plant : location.getPlants()) {
-                if (plant.equals(entityAI)) {
-                    location.getPlants().remove(plant);
-                    log.info(entityAI.getName() + " eat " + plant.getName());
-                    break;
-                }
-            }
+                    location.getPlants().remove(entityAI);
         }
     }
 }

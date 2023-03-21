@@ -3,6 +3,7 @@ package com.aleksei.animalisland.config;
 
 import com.aleksei.animalisland.models.animals.*;
 import com.aleksei.animalisland.models.plant.Grass;
+import com.aleksei.animalisland.utils.factories.AnimalFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,14 @@ public class EntityConfig {
     {
         fillEatingProbability();
         fillMaxNumberOnCellMap();
+    }
+    private static EntityConfig instance;
+    private EntityConfig(){}
+    public static synchronized EntityConfig getInstance(){
+        if (instance == null){
+            instance = new EntityConfig();
+        }
+        return instance;
     }
 
     private void fillEatingProbability() {

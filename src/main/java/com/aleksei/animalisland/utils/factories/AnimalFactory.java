@@ -7,7 +7,6 @@ import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.aleksei.animalisland.utils.exceptions.UnknownAnimalException;
 
 public class AnimalFactory<T extends EntityAI> {
-    private final BaseConfig configFactory = BaseConfig.getAppConfig();
     private static AnimalFactory instance;
     private AnimalFactory(){}
     public static synchronized AnimalFactory getInstance(){
@@ -18,23 +17,22 @@ public class AnimalFactory<T extends EntityAI> {
     }
     public EntityAI create(AnimalType type) {
         return switch (type){
-            case WOLF -> new Wolf((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case SNAKE -> new Snake((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case FOX -> new Fox((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case BEAR -> new Bear((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case EAGLE -> new Eagle((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case HORSE -> new Horse((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case DEER -> new Deer((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case RABBIT -> new Rabbit((int) configFactory.getWeight(type), configFactory.getSpeed(type), configFactory.getFoodQuantity(type));
-            case MOUSE -> new Mouse(configFactory.getWeight(type), configFactory.getSpeed(type), configFactory.getFoodQuantity(type));
-            case GOAT -> new Goat((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case SHEEP -> new Sheep((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case BOAR -> new Boar((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case BUFFALO -> new Buffalo((int) configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
-            case DUCK -> new Duck((int) configFactory.getWeight(type), configFactory.getSpeed(type), configFactory.getFoodQuantity(type));
-            case CATERPILLAR -> new Caterpillar(configFactory.getWeight(type), configFactory.getSpeed(type), (int) configFactory.getFoodQuantity(type));
+            case WOLF -> new Wolf();
+            case SNAKE -> new Snake();
+            case FOX -> new Fox();
+            case BEAR -> new Bear();
+            case EAGLE -> new Eagle();
+            case HORSE -> new Horse();
+            case DEER -> new Deer();
+            case RABBIT -> new Rabbit();
+            case MOUSE -> new Mouse();
+            case GOAT -> new Goat();
+            case SHEEP -> new Sheep();
+            case BOAR -> new Boar();
+            case BUFFALO -> new Buffalo();
+            case DUCK -> new Duck();
+            case CATERPILLAR -> new Caterpillar();
             case GRASS -> new Grass();
-            default -> throw new UnknownAnimalException("Unexpected value: " + type);
         };
     }
 }
