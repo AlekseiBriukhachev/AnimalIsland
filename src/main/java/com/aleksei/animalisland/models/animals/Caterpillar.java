@@ -1,9 +1,14 @@
 package com.aleksei.animalisland.models.animals;
 
 
+import com.aleksei.animalisland.config.BaseConfig;
+
 public class Caterpillar extends Animal implements Herbivore {
-    public Caterpillar(double weight, int speed, int foodQuantity) {
-        super("Caterpillar", "\uD83D\uDC1B", weight
-                , speed, foodQuantity);
+    private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
+    public Caterpillar() {
+        super("Caterpillar", "\uD83D\uDC1B",
+                CONFIG.getWeight(Caterpillar.class),
+                CONFIG.getSpeed(Caterpillar.class),
+                CONFIG.getFoodQuantity(Caterpillar.class) );
     }
 }

@@ -1,11 +1,9 @@
-package com.aleksei.animalisland.services;
+package com.aleksei.animalisland.repository;
 
 
 
 import com.aleksei.animalisland.models.animals.Animal;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface AnimalService<T extends Animal> {

@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Slf4j
 public class View {
-    EntityConfig entityConfig = new EntityConfig();
+    private  final EntityConfig entityConfig = EntityConfig.getInstance();
 
     public void printIsland(Island island, String taskName) {
         log.info("Start task: " + taskName);
@@ -29,11 +29,11 @@ public class View {
 
     private void print(Location location) {
         Grass grass = new Grass();
-        Map<String, Integer> cellMap;
-        cellMap = new HashMap<>();
-        int count;
+
+        Map<String, Integer> cellMap = new HashMap<>();
+
         for (Class<? extends EntityAI> inhabitantClass : entityConfig.entityClassList) {
-            count = location.getAnimals().stream()
+            int count = location.getAnimals().stream()
                     .mapToInt(value -> value.getClass().equals(inhabitantClass) ? 1 : 0)
                     .sum();
                 cellMap.put(AnimalFactory.getInstance().create(AnimalType.valueOf(inhabitantClass.getSimpleName().toUpperCase())).getSymbol(), count);

@@ -1,10 +1,14 @@
 package com.aleksei.animalisland.models.animals;
 
 
-public class Fox extends Animal implements Predator {
+import com.aleksei.animalisland.config.BaseConfig;
 
-    public Fox(int weight, int speed, int foodQuantity) {
-        super("Fox", "\uD83E\uDD8A", weight
-                , speed, foodQuantity);
+public class Fox extends Animal implements Predator {
+    private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
+    public Fox() {
+        super("Fox", "\uD83E\uDD8A",
+                CONFIG.getWeight(Fox.class),
+                CONFIG.getSpeed(Fox.class),
+                CONFIG.getFoodQuantity(Fox.class));
     }
 }
