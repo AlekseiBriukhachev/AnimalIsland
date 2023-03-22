@@ -1,9 +1,13 @@
 package com.aleksei.animalisland.simulation.animals;
 
-
+@AnimalAnnotation(
+        name = "Snake",
+        symbol = "\uD83D\uDC0D",
+        weight = 15,
+        speed = 1,
+        foodAmount = 3,
+        maxNumberPerLocation = 30,
+        eatProbability = {0, 0, 15, 0, 0, 0, 0, 20, 40, 0, 0, 0, 0, 10, 0, 0}
+)
 public class Snake extends Animal {
-    public Snake(int weight, int speed, int foodQuantity) {
-        super("Snake", "\uD83D\uDC0D", weight
-                , speed, foodQuantity);
-    }
 }
