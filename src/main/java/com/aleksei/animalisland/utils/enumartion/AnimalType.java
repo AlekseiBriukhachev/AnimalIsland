@@ -1,5 +1,7 @@
 package com.aleksei.animalisland.utils.enumartion;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public enum AnimalType {
     BEAR,

@@ -1,13 +1,16 @@
 package com.aleksei.animalisland.utils.factories;
 
 
-import com.aleksei.animalisland.config.EntityConfig;
+
 import com.aleksei.animalisland.models.Island.Location;
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.EntityAI;
+import com.aleksei.animalisland.config.EntityConfig;
 import com.aleksei.animalisland.models.plant.Plant;
 import com.aleksei.animalisland.utils.enumartion.AnimalType;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.IntStream;
 

@@ -3,7 +3,7 @@ package com.aleksei.animalisland.config;
 
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.EntityAI;
-import com.aleksei.animalisland.utils.enumartion.*;
+import com.aleksei.animalisland.utils.enumartion.AnimalType;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,7 @@
 package com.aleksei.animalisland.utils.oldutils;
 
 import com.aleksei.animalisland.models.animals.Animal;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
