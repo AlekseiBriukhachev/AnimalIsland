@@ -5,9 +5,8 @@ import com.aleksei.animalisland.config.AppConfig;
 import com.aleksei.animalisland.dao.SimulationResult;
 import com.aleksei.animalisland.simulation.Simulation;
 import com.aleksei.animalisland.simulation.animals.Animal;
-import com.aleksei.animalisland.simulation.animals.AnimalAnnotation;
+import com.aleksei.animalisland.simulation.EntityAnnotation;
 import com.aleksei.animalisland.simulation.plant.Grass;
-import com.aleksei.animalisland.simulation.plant.Plant;
 import com.aleksei.animalisland.utils.AnimalFactory;
 import com.aleksei.animalisland.utils.enums.AnimalType;
 import lombok.Data;
@@ -47,8 +46,8 @@ public class Island implements Simulation {
 
             Animal animal = AnimalFactory.getInstance().create(AnimalType.values()[animalType]);
 
-            AnimalAnnotation animalAnnotation = animal.getClass().getAnnotation(AnimalAnnotation.class);
-            maxNumberOnCell = animalAnnotation.maxNumberPerLocation();
+            EntityAnnotation entityAnnotation = animal.getClass().getAnnotation(EntityAnnotation.class);
+            maxNumberOnCell = entityAnnotation.maxNumberPerLocation();
 
             number = (int) (Math.random() * maxNumberOnCell);
             IntStream.rangeClosed(0, number).forEachOrdered(value -> location.getAnimals().add(animal));

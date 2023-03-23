@@ -1,6 +1,8 @@
 package com.aleksei.animalisland.simulation.animals;
 
-@AnimalAnnotation(
+import com.aleksei.animalisland.simulation.EntityAnnotation;
+
+@EntityAnnotation(
         name = "Fox",
         symbol = "\uD83E\uDD8A",
         weight = 8,
@@ -9,6 +11,6 @@ package com.aleksei.animalisland.simulation.animals;
         maxNumberPerLocation = 30,
         eatProbability = {0, 0, 0, 0, 0, 0, 0, 70, 90, 0, 0, 0, 0, 60, 40, 0}
 )
-public class Fox extends Animal {
+public class Fox  {
 
 }

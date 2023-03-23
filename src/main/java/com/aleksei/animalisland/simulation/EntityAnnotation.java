@@ -1,13 +1,11 @@
-package com.aleksei.animalisland.simulation.animals;
+package com.aleksei.animalisland.simulation;
 
 import java.lang.annotation.*;
-import java.util.List;
-import java.util.Map;
 
 @Target(value = ElementType.TYPE)
 @Retention(value = RetentionPolicy.RUNTIME)
 @Inherited
-public @interface AnimalAnnotation {
+public @interface EntityAnnotation {
     String name();
     String symbol();
     double weight();
