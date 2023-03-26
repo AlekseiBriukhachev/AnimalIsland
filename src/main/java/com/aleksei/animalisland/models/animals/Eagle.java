@@ -10,6 +10,7 @@ public class Eagle extends Animal {
         super("Eagle", "\uD83E\uDD85",
                 CONFIG.getWeight(Eagle.class),
                 CONFIG.getSpeed(Eagle.class),
-                CONFIG.getFoodQuantity(Eagle.class));
+                CONFIG.getFoodQuantity(Eagle.class),
+                CONFIG.getEatingProbability(Eagle.class));
     }
 }

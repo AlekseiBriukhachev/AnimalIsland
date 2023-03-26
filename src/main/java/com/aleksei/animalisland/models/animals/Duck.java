@@ -11,6 +11,7 @@ public class Duck extends Animal {
         super("Duck", "\uD83E\uDD86",
                 CONFIG.getWeight(Duck.class),
                 CONFIG.getSpeed(Duck.class),
-                CONFIG.getFoodQuantity(Duck.class));
+                CONFIG.getFoodQuantity(Duck.class),
+                CONFIG.getEatingProbability(Duck.class));
     }
 }

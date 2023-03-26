@@ -23,6 +23,7 @@ public class IslandController {
     }
 
     public void printInitialIsland() {
+        controlService.init();
         view.printIsland(island, "Start new Island!");
     }
 

@@ -10,6 +10,7 @@ public class Rabbit extends Animal {
         super("Rabbit", "\uD83D\uDC30",
                 CONFIG.getWeight(Rabbit.class),
                 CONFIG.getSpeed(Rabbit.class),
-                CONFIG.getFoodQuantity(Rabbit.class));
+                CONFIG.getFoodQuantity(Rabbit.class),
+                CONFIG.getEatingProbability(Rabbit.class));
     }
 }

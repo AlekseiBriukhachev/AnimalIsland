@@ -10,6 +10,7 @@ public class Wolf extends Animal {
         super("Wolf", "\uD83D\uDC3A",
                 CONFIG.getWeight(Wolf.class),
                 CONFIG.getSpeed(Wolf.class),
-                CONFIG.getFoodQuantity(Wolf.class));
+                CONFIG.getFoodQuantity(Wolf.class),
+                CONFIG.getEatingProbability(Wolf.class));
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class InMemoryBoarRepository implements BoarRepository {
+public class InMemoryBoarRepository implements BoarRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
     {
@@ -37,7 +37,7 @@ class InMemoryBoarRepository implements BoarRepository {
     }
 
     @Override
-    public void eatOtherAnimal() {
+    public void eatOtherAnimal(Animal animal) {
 
     }
 }

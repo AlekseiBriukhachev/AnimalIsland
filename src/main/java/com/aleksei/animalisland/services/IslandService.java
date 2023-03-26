@@ -7,8 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class StartService implements Runnable {
-    private final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+public class IslandService implements Runnable {
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     private final IslandController islandController = new IslandController();
 
     @Override
@@ -19,9 +19,9 @@ public class StartService implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        service.scheduleAtFixedRate(islandController::animalEat, 0, 5, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(islandController::grassGrow, 2, 7, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(islandController::animalMove, 4, 9, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(islandController::animalReproduction, 6, 11, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(islandController::animalEat, 0, 50, TimeUnit.SECONDS);
+//        executor.scheduleAtFixedRate(islandController::grassGrow, 2, 7, TimeUnit.SECONDS);
+//        executor.scheduleAtFixedRate(islandController::animalMove, 4, 9, TimeUnit.SECONDS);
+//        executor.scheduleAtFixedRate(islandController::animalReproduction, 6, 11, TimeUnit.SECONDS);
     }
 }

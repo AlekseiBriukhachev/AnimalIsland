@@ -10,6 +10,7 @@ public class Deer extends Animal {
         super("Deer", "\uD83E\uDD8C",
                 CONFIG.getWeight(Deer.class),
                 CONFIG.getSpeed(Deer.class),
-                CONFIG.getFoodQuantity(Deer.class));
+                CONFIG.getFoodQuantity(Deer.class),
+                CONFIG.getEatingProbability(Deer.class));
     }
 }

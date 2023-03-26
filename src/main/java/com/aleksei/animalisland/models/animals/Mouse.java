@@ -11,6 +11,7 @@ public class Mouse extends Animal {
         super("Mouse", "\uD83D\uDC01",
                 CONFIG.getWeight(Mouse.class),
                 CONFIG.getSpeed(Mouse.class),
-                CONFIG.getFoodQuantity(Mouse.class));
+                CONFIG.getFoodQuantity(Mouse.class),
+                CONFIG.getEatingProbability(Mouse.class));
     }
 }

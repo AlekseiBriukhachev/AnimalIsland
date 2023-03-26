@@ -10,6 +10,7 @@ public class Caterpillar extends Animal {
         super("Caterpillar", "\uD83D\uDC1B",
                 CONFIG.getWeight(Caterpillar.class),
                 CONFIG.getSpeed(Caterpillar.class),
-                CONFIG.getFoodQuantity(Caterpillar.class) );
+                CONFIG.getFoodQuantity(Caterpillar.class),
+                CONFIG.getEatingProbability(Caterpillar.class));
     }
 }

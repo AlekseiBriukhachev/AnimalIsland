@@ -1,10 +1,8 @@
-package com.aleksei.animalisland.services;
+package com.aleksei.animalisland.utils;
 
-
-import com.aleksei.animalisland.config.EntityConfig;
-import com.aleksei.animalisland.models.Island.Location;
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.EntityAI;
+import com.aleksei.animalisland.services.AnimalService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,24 +10,27 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
-public class EatService {
-    private Location location;
-    private final EntityConfig entityConfig = EntityConfig.getInstance();
+public class EatingUtil {
+    private static AnimalService animalService;
 
-    public void animalEat(Location location) {
-        this.location = location;
-        for (int i = 0; i < location.getAnimals().size(); i++) {
-            animalHunt(location.getAnimals().get(i));
-        }
+    public EatingUtil(AnimalService animalService) {
+        EatingUtil.animalService = animalService;
     }
 
-    private void animalHunt(Animal hunter) {
+    public Animal getAnimalToEat() {
+        return animalService.getLocation().getAnimals().stream()
+                .filter(this::canEat)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private boolean canEat(Animal hunter) {
         Map<Class<? extends EntityAI>, Integer> victimMap =
-                entityConfig.eatingProbabilityMap.get(hunter.getClass());
+                animalService.getEntityConfig().eatingProbabilityMap.get(hunter.getClass());
         for (Map.Entry<Class<? extends EntityAI>, Integer> victimEntry : victimMap.entrySet()) {
             int randomProbability = ThreadLocalRandom.current().nextInt(100);
 
-            if (victimEntry.getValue() != 0 && victimEntry.getValue() >= randomProbability){
+            if (victimEntry.getValue() != 0 && victimEntry.getValue() >= randomProbability) {
 
                 try {
                     EntityAI entityAI = victimEntry.getKey().getConstructor().newInstance();
@@ -52,14 +53,16 @@ public class EatService {
                 }
 
             }
+
         }
+        return false;
     }
 
     private void removeEntity(EntityAI entityAI) {
         if (entityAI instanceof Animal) {
-                    location.getAnimals().remove(entityAI);
+            animalService.getLocation().getAnimals().remove(entityAI);
         } else {
-                    location.getPlants().remove(entityAI);
+            animalService.getLocation().getPlants().remove(entityAI);
         }
     }
 }

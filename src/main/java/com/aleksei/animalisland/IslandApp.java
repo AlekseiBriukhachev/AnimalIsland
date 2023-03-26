@@ -1,7 +1,7 @@
 package com.aleksei.animalisland;
 
 
-import com.aleksei.animalisland.services.StartService;
+import com.aleksei.animalisland.services.IslandService;
 
 public class IslandApp {
 //    private static AnimalFactory animalFactory = AnimalFactory.getInstance();
@@ -16,6 +16,6 @@ public class IslandApp {
 
 //        System.out.println(entity.getEatingProbability(Bear.class).toString());
 
-        new Thread(new StartService()).start();
+        new Thread(new IslandService()).start();
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class InMemoryCaterpillarRepository implements CaterpillarRepository {
+public class InMemoryCaterpillarRepository implements CaterpillarRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
     {

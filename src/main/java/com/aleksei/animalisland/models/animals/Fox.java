@@ -10,6 +10,7 @@ public class Fox extends Animal{
         super("Fox", "\uD83E\uDD8A",
                 CONFIG.getWeight(Fox.class),
                 CONFIG.getSpeed(Fox.class),
-                CONFIG.getFoodQuantity(Fox.class));
+                CONFIG.getFoodQuantity(Fox.class),
+                CONFIG.getEatingProbability(Fox.class));
     }
 }

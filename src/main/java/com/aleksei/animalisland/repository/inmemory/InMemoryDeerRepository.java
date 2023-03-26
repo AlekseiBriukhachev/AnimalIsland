@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class InMemoryDeerRepository implements DeerRepository {
+public class InMemoryDeerRepository implements DeerRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
     {

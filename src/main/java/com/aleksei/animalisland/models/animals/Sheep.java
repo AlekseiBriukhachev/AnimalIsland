@@ -10,6 +10,7 @@ public class Sheep extends Animal {
         super("Sheep", "\uD83D\uDC11",
                 CONFIG.getWeight(Sheep.class),
                 CONFIG.getSpeed(Sheep.class),
-                CONFIG.getFoodQuantity(Sheep.class));
+                CONFIG.getFoodQuantity(Sheep.class),
+                CONFIG.getEatingProbability(Sheep.class));
     }
 }

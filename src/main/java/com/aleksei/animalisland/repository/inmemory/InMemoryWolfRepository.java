@@ -1,7 +1,6 @@
 package com.aleksei.animalisland.repository.inmemory;
 
 import com.aleksei.animalisland.models.animals.Animal;
-import com.aleksei.animalisland.models.animals.Bear;
 import com.aleksei.animalisland.models.animals.Wolf;
 import com.aleksei.animalisland.repository.WolfRepository;
 
@@ -9,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class InMemoryWolfRepository implements WolfRepository {
+public class InMemoryWolfRepository implements WolfRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
     {
@@ -32,7 +31,7 @@ class InMemoryWolfRepository implements WolfRepository {
     }
 
     @Override
-    public void eatOtherAnimal() {
+    public void eatOtherAnimal(Animal animal) {
 
     }
 }

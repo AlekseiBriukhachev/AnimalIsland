@@ -6,16 +6,16 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 @RequiredArgsConstructor
-class EatServiceTest {
+class AnimalServiceTest {
     private final CellFactory cellFactory = new CellFactory();
     private final Location location = cellFactory.createCell();
 
     @Test
     void animalEat() {
 
-        EatService eatService = new EatService();
+        AnimalService animalService = new AnimalService();
 
-        eatService.animalEat(location);
+        animalService.animalEat(location);
 
 
 

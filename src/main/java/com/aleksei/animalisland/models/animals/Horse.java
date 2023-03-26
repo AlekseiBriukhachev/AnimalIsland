@@ -10,6 +10,7 @@ public class Horse extends Animal {
         super("Horse", "\uD83D\uDC0E",
                 CONFIG.getWeight(Horse.class),
                 CONFIG.getSpeed(Horse.class),
-                CONFIG.getFoodQuantity(Horse.class));
+                CONFIG.getFoodQuantity(Horse.class),
+                CONFIG.getEatingProbability(Horse.class));
     }
 }

@@ -2,13 +2,16 @@ package com.aleksei.animalisland.repository.inmemory;
 
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.Bear;
+import com.aleksei.animalisland.models.animals.EntityAI;
 import com.aleksei.animalisland.repository.BearRepository;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class InMemoryBearRepository implements BearRepository {
+public class InMemoryBearRepository implements BearRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
     {
@@ -32,7 +35,35 @@ class InMemoryBearRepository implements BearRepository {
     }
 
     @Override
-    public void eatOtherAnimal() {
-
+    public void eatOtherAnimal(Animal animal) {
+//        Map<Class<? extends EntityAI>, Integer> victimMap =
+//                entityConfig.eatingProbabilityMap.get(hunter.getClass());
+//        for (Map.Entry<Class<? extends EntityAI>, Integer> victimEntry : victimMap.entrySet()) {
+//            int randomProbability = ThreadLocalRandom.current().nextInt(100);
+//
+//            if (victimEntry.getValue() != 0 && victimEntry.getValue() >= randomProbability){
+//
+//                try {
+//                    EntityAI entityAI = victimEntry.getKey().getConstructor().newInstance();
+//                    log.info(hunter.getName() + " eat " + entityAI.getName() + " with probability " + randomProbability + ". " + hunter.getName() + " power is " + victimEntry.getValue());
+//
+//                    removeEntity(entityAI);
+//
+//                } catch (InstantiationException e) {
+//                    log.error("TEST - InstantiationException");
+//                    throw new RuntimeException(e);
+//                } catch (IllegalAccessException e) {
+//                    log.error("TEST - IllegalAccessException");
+//                    throw new RuntimeException(e);
+//                } catch (InvocationTargetException e) {
+//                    log.error("TEST - InvocationTargetException");
+//                    throw new RuntimeException(e);
+//                } catch (NoSuchMethodException e) {
+//                    log.error("TEST - NoSuchMethodException");
+//                    throw new RuntimeException(e);
+//                }
+//
+//            }
+//        }
     }
 }

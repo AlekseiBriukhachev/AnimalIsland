@@ -10,6 +10,7 @@ public class Buffalo extends Animal {
         super("Buffalo", "\uD83D\uDC03",
                 CONFIG.getWeight(Buffalo.class),
                 CONFIG.getSpeed(Buffalo.class),
-                CONFIG.getFoodQuantity(Buffalo.class));
+                CONFIG.getFoodQuantity(Buffalo.class),
+                CONFIG.getEatingProbability(Buffalo.class));
     }
 }
