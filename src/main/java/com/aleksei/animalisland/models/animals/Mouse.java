@@ -2,8 +2,10 @@ package com.aleksei.animalisland.models.animals;
 
 
 import com.aleksei.animalisland.config.BaseConfig;
+import com.aleksei.animalisland.repository.Herbivore;
+import com.aleksei.animalisland.repository.Predator;
 
-public class Mouse extends Animal implements Herbivore, Predator {
+public class Mouse extends Animal {
     private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
     public Mouse() {
         super("Mouse", "\uD83D\uDC01",

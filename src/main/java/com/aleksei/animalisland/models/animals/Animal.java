@@ -1,9 +1,11 @@
 package com.aleksei.animalisland.models.animals;
 
+import com.aleksei.animalisland.repository.Herbivore;
+import com.aleksei.animalisland.repository.Predator;
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class Animal extends EntityAI implements Predator, Herbivore {
+public abstract class Animal extends EntityAI {
     @Getter
     @Setter
     private int speed;

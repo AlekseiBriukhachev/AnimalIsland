@@ -2,8 +2,9 @@ package com.aleksei.animalisland.models.animals;
 
 
 import com.aleksei.animalisland.config.BaseConfig;
+import com.aleksei.animalisland.repository.Herbivore;
 
-public class Horse extends Animal implements Herbivore {
+public class Horse extends Animal {
     private static final BaseConfig CONFIG = BaseConfig.getAppConfig();
     public Horse() {
         super("Horse", "\uD83D\uDC0E",
