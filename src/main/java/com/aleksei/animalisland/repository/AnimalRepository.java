@@ -1,6 +1,8 @@
 package com.aleksei.animalisland.repository;
 
+import com.aleksei.animalisland.models.animals.Animal;
+
 public interface AnimalRepository {
     void move();
-    void reproduce();
+    Animal create(Animal animal);
 }

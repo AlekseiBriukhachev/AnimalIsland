@@ -2,15 +2,14 @@ package com.aleksei.animalisland.models.animals;
 
 import com.aleksei.animalisland.repository.Herbivore;
 import com.aleksei.animalisland.repository.Predator;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+@Data
 public abstract class Animal extends EntityAI {
-    @Getter
-    @Setter
+    private Integer id;
     private int speed;
-    @Getter
-    @Setter
     private double foodAmount;
 
     public Animal(String name, String symbol, double weight
@@ -20,6 +19,10 @@ public abstract class Animal extends EntityAI {
         this.foodAmount = foodAmount;
     }
     public Animal(){
+    }
+
+    public boolean isNew(){
+        return id == null;
     }
 
 }
