@@ -4,11 +4,13 @@ import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.Bear;
 import com.aleksei.animalisland.models.animals.Sheep;
 import com.aleksei.animalisland.repository.SheepRepository;
+import lombok.Data;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Data
 public class InMemorySheepRepository implements SheepRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);

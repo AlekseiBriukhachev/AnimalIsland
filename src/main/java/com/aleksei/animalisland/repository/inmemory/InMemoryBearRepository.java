@@ -2,24 +2,26 @@ package com.aleksei.animalisland.repository.inmemory;
 
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.Bear;
-import com.aleksei.animalisland.models.animals.EntityAI;
 import com.aleksei.animalisland.repository.BearRepository;
+import lombok.Data;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class InMemoryBearRepository implements BearRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
+
     {
         create(new Bear());
         create(new Bear());
         create(new Bear());
         create(new Bear());
     }
+
     @Override
     public void move() {
 
@@ -27,7 +29,7 @@ public class InMemoryBearRepository implements BearRepository {
 
     @Override
     public Animal create(Animal animal) {
-        if (animal.isNew()){
+        if (animal.isNew()) {
             animal.setId(counter.incrementAndGet());
         }
         return repository.put(animal.getId(), animal);
@@ -65,5 +67,12 @@ public class InMemoryBearRepository implements BearRepository {
 //
 //            }
 //        }
+    }
+    public List<Bear> getAll(){
+        List<Bear> bears = new ArrayList<>();
+        for (var bear: repository.entrySet()){
+            bears.add((Bear) bear.getValue());
+        }
+        return bears;
     }
 }

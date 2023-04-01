@@ -3,20 +3,24 @@ package com.aleksei.animalisland.repository.inmemory;
 import com.aleksei.animalisland.models.animals.Animal;
 import com.aleksei.animalisland.models.animals.Mouse;
 import com.aleksei.animalisland.repository.MouseRepository;
+import lombok.Data;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Data
 public class InMemoryMouseRepository implements MouseRepository {
     private Map<Integer, Animal> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
+
     {
         create(new Mouse());
         create(new Mouse());
         create(new Mouse());
         create(new Mouse());
     }
+
     @Override
     public void move() {
 
@@ -24,7 +28,7 @@ public class InMemoryMouseRepository implements MouseRepository {
 
     @Override
     public Animal create(Animal animal) {
-        if (animal.isNew()){
+        if (animal.isNew()) {
             animal.setId(counter.incrementAndGet());
         }
         return repository.put(animal.getId(), animal);
