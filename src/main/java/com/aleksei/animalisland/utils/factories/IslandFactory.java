@@ -16,6 +16,4 @@ public class IslandFactory {
         }
         return island;
     }
-
-
 }

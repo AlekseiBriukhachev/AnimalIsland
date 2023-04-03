@@ -2,9 +2,7 @@ package com.aleksei.animalisland.controllers;
 
 
 
-import com.aleksei.animalisland.services.AnimalService;
 import com.aleksei.animalisland.services.ControlService;
-import com.aleksei.animalisland.services.IslandService;
 import com.aleksei.animalisland.utils.factories.IslandFactory;
 import com.aleksei.animalisland.models.Island.Island;
 import com.aleksei.animalisland.services.MoveService;
@@ -16,16 +14,16 @@ import java.util.Collection;
 public class IslandController {
     private final View view = new View();
     private final MoveService moveService = new MoveService();
+    private final IslandFactory islandFactory = new IslandFactory();
     private static Island island;
-    private final AnimalService animalService = new AnimalService();
-    private final IslandService islandService = new IslandService();
     private final ControlService controlService = new ControlService();
 
-    public void init() {
-        animalService.init();
-        islandService.init();
+    {
+        island = islandFactory.getInitialIsland();
+    }
+
+    public void printInitialIsland() {
         view.printIsland(island, "Start new Island!");
-        new Thread(controlService).start();
     }
 
     public void animalEat() {
