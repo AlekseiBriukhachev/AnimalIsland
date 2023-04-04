@@ -31,36 +31,36 @@ public class IslandServiceImpl implements IslandService {
         int numberOfEntity = ThreadLocalRandom.current().nextInt();
 
 
-        IntStream.rangeClosed(0, width * height).forEachOrdered(value -> );
+//        IntStream.rangeClosed(0, width * height).forEachOrdered(value -> );
 
 
-        IntStream.rangeClosed(0, number).forEachOrdered(i -> {
-            try {
-                if (entityAI instanceof Animal) {
-                    location.getAnimals().add((Animal) entityAI.clone());
-                } else {
-                    location.getPlants().add((Plant) entityAI.clone());
-                }
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        for (Class<? extends EntityAI> entityClass : entityConfig.entityClassList) {
-
-            int maxNumberOnCell;
-
-            try {
-
-                EntityAI entityAI = entityClass.getConstructor().newInstance();
-
-
-                maxNumberOnCell = entityConfig.maxNumberOnCellMap.entrySet().stream()
-                        .filter(maxNumberOnCellEntry -> entityClass.equals(maxNumberOnCellEntry.getKey()))
-                        .findFirst()
-                        .map(Map.Entry::getValue)
-                        .orElse(0);
-
-                int number = (int) (Math.random() * maxNumberOnCell);
+//        IntStream.rangeClosed(0, number).forEachOrdered(i -> {
+//            try {
+//                if (entityAI instanceof Animal) {
+//                    location.getAnimals().add((Animal) entityAI.clone());
+//                } else {
+//                    location.getPlants().add((Plant) entityAI.clone());
+//                }
+//            } catch (CloneNotSupportedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+//
+//        for (Class<? extends EntityAI> entityClass : entityConfig.entityClassList) {
+//
+//            int maxNumberOnCell;
+//
+//            try {
+//
+//                EntityAI entityAI = entityClass.getConstructor().newInstance();
+//
+//
+//                maxNumberOnCell = entityConfig.maxNumberOnCellMap.entrySet().stream()
+//                        .filter(maxNumberOnCellEntry -> entityClass.equals(maxNumberOnCellEntry.getKey()))
+//                        .findFirst()
+//                        .map(Map.Entry::getValue)
+//                        .orElse(0);
+//
+//                int number = (int) (Math.random() * maxNumberOnCell);
     }
 }
