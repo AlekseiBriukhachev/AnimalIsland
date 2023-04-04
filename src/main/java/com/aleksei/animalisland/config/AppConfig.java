@@ -1,19 +1,24 @@
 package com.aleksei.animalisland.config;
 
 
-import com.aleksei.animalisland.models.animals.Animal;
-import com.aleksei.animalisland.models.animals.EntityAI;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.PropertyConfigurator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 public final class AppConfig {
-    private Config config;
+    private final Config config;
     private static AppConfig appConfig;
+    private static final List<String> entityList = new ArrayList<>(List.of("bear", "rabbit", "grass"));
+
     private static void init() {
         PropertyConfigurator.configure("log4j.properties");
     }
@@ -22,7 +27,6 @@ public final class AppConfig {
         log.debug("Create configuration");
         this.config = config;
         config.checkValid(ConfigFactory.defaultReference(), "island-simulation");
-//        init();
 
     }
 
@@ -38,27 +42,31 @@ public final class AppConfig {
         return appConfig;
     }
 
-    public double getWeight(Class<? extends Animal> aClass) {
-        return config.getDouble(aClass.getSimpleName().toLowerCase() + ".weight");
+    public double getWeight(String animal) {
+        return config.getDouble(animal.toLowerCase() + ".weight");
     }
     public int getMaxNumberPerLocation(String animal) {
         return config.getInt( animal+ ".maxNumberPerLocation");
     }
-    public int getSpeed(Class<? extends Animal> aClass) {
-        return config.getInt(aClass.getSimpleName().toLowerCase() + ".speed");
+    public int getSpeed(String animal) {
+        return config.getInt(animal.toLowerCase() + ".speed");
     }
-    public double getFoodQuantity(Class<? extends Animal> aClass) {
-        return config.getDouble(aClass.getSimpleName().toLowerCase() + ".foodAmount");
+    public double getFoodQuantity(String animal) {
+        return config.getDouble(animal.toLowerCase() + ".foodAmount");
     }
-    public int getInitNumber(Class<? extends Animal> aClass){
-        return config.getInt(aClass.getSimpleName().toLowerCase() + ".initNumber");
+    public int getInitNumber(String animal){
+        return config.getInt(animal.toLowerCase() + ".initNumber");
     }
-    public int[] getEatingProbability(Class<? extends EntityAI> aClass){
+    public Map<String, Integer> getEatingProbability(String animal){
 
-        String strEatProbability = config.getString(aClass.getSimpleName().toLowerCase() + ".eatProbability");
+        String strEatProbability = config.getString(animal.toLowerCase() + ".eatProbability");
         String[] splitStr = strEatProbability.split(", ");
 
-        return Arrays.stream(splitStr).mapToInt(Integer::parseInt).toArray();
+        int[] eatingProbability = Arrays.stream(splitStr).mapToInt(Integer::parseInt).toArray();
+        return IntStream.range(0, entityList.size())
+                .boxed()
+                .collect(Collectors.toMap(entityList::get, i -> eatingProbability[i], (a, b) -> b));
+
     }
 
     public int getLocationSize() {
@@ -72,7 +80,5 @@ public final class AppConfig {
     public int getIslandHeight() {
         return config.getInt("island.height");
     }
-    public String getGrasColor(){
-        return config.getString("grass.color");
-    }
+
 }
