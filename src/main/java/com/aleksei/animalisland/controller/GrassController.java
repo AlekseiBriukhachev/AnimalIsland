@@ -7,7 +7,7 @@ import com.aleksei.animalisland.service.GrassServiceImpl;
 
 public class GrassController {
     private final GrassService service = new GrassServiceImpl();
-    public void create(Location location, Grass grass){
-        service.create(location, grass);
+    public void create(Grass grass, Location location){
+        service.create(grass, location.getId());
     }
 }

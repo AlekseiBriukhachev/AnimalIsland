@@ -7,7 +7,7 @@ import com.aleksei.animalisland.service.RabbitServiceImpl;
 
 public class RabbitController {
     private final RabbitService service = new RabbitServiceImpl();
-    public void create(Location location, Rabbit rabbit){
-        service.create(location, rabbit);
+    public void create(Rabbit rabbit, Location location){
+        service.create(rabbit, location.getId());
     }
 }

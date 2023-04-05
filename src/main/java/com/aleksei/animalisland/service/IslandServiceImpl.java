@@ -32,15 +32,15 @@ public class IslandServiceImpl implements IslandService {
     private void addEntityToLocation(Location location) {
         for (String entityString : AppConfig.getEntityList()) {
             //TODO create entities according maxNumberPerLocation
-            checkAndCreateEntity(entityString, location);
+            checkAndCreateEntity(entityString, location.getId());
         }
     }
 
-    private void checkAndCreateEntity(String entityString, Location location) {
+    private void checkAndCreateEntity(String entityString, int locationId) {
         switch (entityString) {
-            case "bear" -> bearService.create(new Bear(), location.getId());
-            case "rabbit" -> rabbitService.create(new Rabbit(), location.getId());
-            case "grass" -> grassService.create(new Grass(), location.getId());
+            case "bear" -> bearService.create(new Bear(), locationId);
+            case "rabbit" -> rabbitService.create(new Rabbit(), locationId);
+            case "grass" -> grassService.create(new Grass(), locationId);
             default -> throw new UnknownAnimalException("Unknown entity: " + entityString);
         }
     }
