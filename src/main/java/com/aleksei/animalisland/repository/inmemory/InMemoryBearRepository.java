@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryBearRepository implements BearRepository<Bear> {
-    private final Map<Location, Bear> bearMap = new ConcurrentHashMap<>();
+    private final Map<Integer, List<Bear>> bearMap = new ConcurrentHashMap<>();
 
     @Override
     public void move() {
@@ -22,12 +22,14 @@ public class InMemoryBearRepository implements BearRepository<Bear> {
     }
 
     @Override
-    public Bear create(Location location, Bear bear) {
-        return bearMap.put(location, bear);
+    public void create(Bear bear, int locationId) {
+        List<Bear> bears = bearMap.get(locationId);
+        bears.add(bear);
+        bearMap.put(locationId, bears);
     }
 
     @Override
-    public List<Bear> getAllInLocation(Location location) {
+    public List<Bear> getAllInLocation(int id) {
         return null;
     }
 
@@ -35,10 +37,5 @@ public class InMemoryBearRepository implements BearRepository<Bear> {
     public void eatOtherAnimal() {
 
     }
-
-//    @Override
-//    public Bear create(Bear bear) {
-//        return bearMap.put(new Location(), bear);
-//    }
 
 }

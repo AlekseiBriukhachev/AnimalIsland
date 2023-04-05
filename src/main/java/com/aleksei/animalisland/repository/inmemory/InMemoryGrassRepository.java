@@ -9,15 +9,17 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryGrassRepository implements GrassRepository<Grass> {
-    private final Map<Location, Grass> grassMap = new ConcurrentHashMap<>();
+    private final Map<Integer, List<Grass>> grassMap = new ConcurrentHashMap<>();
 
     @Override
-    public Grass create(Location location, Grass grass) {
-        return grassMap.put(location, grass);
+    public void create(Grass grass, int locationId) {
+        List<Grass> grassList = grassMap.get(locationId);
+        grassList.add(grass);
+        grassMap.put(locationId, grassList);
     }
 
     @Override
-    public List<Grass> getAllInLocation(Location location) {
+    public List<Grass> getAllInLocation(int id) {
         return null;
     }
 }

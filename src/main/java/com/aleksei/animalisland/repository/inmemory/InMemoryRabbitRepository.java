@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryRabbitRepository implements RabbitRepository<Rabbit> {
-    private final Map<Location, Rabbit> rabbitMap = new ConcurrentHashMap<>();
+    private final Map<Integer, List<Rabbit>> rabbitMap = new ConcurrentHashMap<>();
 
     @Override
     public void move() {
@@ -22,12 +22,14 @@ public class InMemoryRabbitRepository implements RabbitRepository<Rabbit> {
     }
 
     @Override
-    public Rabbit create(Location location, Rabbit rabbit) {
-        return rabbitMap.put(location, rabbit);
+    public void create(Rabbit rabbit, int locationIdd) {
+        List<Rabbit> rabbits = rabbitMap.get(locationIdd);
+        rabbits.add(rabbit);
+        rabbitMap.put(locationIdd, rabbits);
     }
 
     @Override
-    public List<Rabbit> getAllInLocation(Location location) {
+    public List<Rabbit> getAllInLocation(int id){
         return null;
     }
 

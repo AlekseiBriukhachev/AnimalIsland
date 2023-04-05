@@ -8,7 +8,7 @@ import com.aleksei.animalisland.repository.inmemory.InMemoryRabbitRepository;
 public class RabbitServiceImpl implements RabbitService {
     private final RabbitRepository<Rabbit> repository = new InMemoryRabbitRepository();
     @Override
-    public Rabbit create(Location location, Rabbit rabbit){
-        return repository.create(location, rabbit);
+    public Rabbit create(Rabbit rabbit, int locationId){
+        return repository.create(rabbit, locationId);
     }
 }

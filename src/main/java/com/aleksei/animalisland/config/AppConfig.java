@@ -3,6 +3,7 @@ package com.aleksei.animalisland.config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -17,6 +18,7 @@ import java.util.stream.IntStream;
 public final class AppConfig {
     private final Config config;
     private static AppConfig appConfig;
+    @Getter
     private static final List<String> entityList = new ArrayList<>(List.of("bear", "rabbit", "grass"));
 
     private static void init() {

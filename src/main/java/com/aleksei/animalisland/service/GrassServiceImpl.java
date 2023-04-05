@@ -9,7 +9,7 @@ public class GrassServiceImpl implements GrassService {
     private final GrassRepository<Grass> repository = new InMemoryGrassRepository();
 
     @Override
-    public Grass create(Location location, Grass grass) {
-        return repository.create(location, grass);
+    public Grass create(Grass grass, int locationId) {
+        return repository.create(grass, locationId);
     }
 }
