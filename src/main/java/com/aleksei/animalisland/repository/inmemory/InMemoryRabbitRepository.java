@@ -4,12 +4,14 @@ import com.aleksei.animalisland.model.Location;
 import com.aleksei.animalisland.model.Rabbit;
 import com.aleksei.animalisland.repository.RabbitRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryRabbitRepository implements RabbitRepository<Rabbit> {
     private final Map<Integer, List<Rabbit>> rabbitMap = new ConcurrentHashMap<>();
+    private final List<Rabbit> rabbits = new ArrayList<>();
 
     @Override
     public void move() {
@@ -23,7 +25,7 @@ public class InMemoryRabbitRepository implements RabbitRepository<Rabbit> {
 
     @Override
     public void create(Rabbit rabbit, int locationIdd) {
-        List<Rabbit> rabbits = rabbitMap.get(locationIdd);
+//        List<Rabbit> rabbits = rabbitMap.get(locationIdd);
         rabbits.add(rabbit);
         rabbitMap.put(locationIdd, rabbits);
     }

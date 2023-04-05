@@ -4,16 +4,18 @@ import com.aleksei.animalisland.model.Grass;
 import com.aleksei.animalisland.model.Location;
 import com.aleksei.animalisland.repository.GrassRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryGrassRepository implements GrassRepository<Grass> {
     private final Map<Integer, List<Grass>> grassMap = new ConcurrentHashMap<>();
+    private final List<Grass> grassList = new ArrayList<>();
 
     @Override
     public void create(Grass grass, int locationId) {
-        List<Grass> grassList = grassMap.get(locationId);
+//        List<Grass> grassList = grassMap.get(locationId);
         grassList.add(grass);
         grassMap.put(locationId, grassList);
     }

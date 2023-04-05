@@ -7,7 +7,12 @@ import com.aleksei.animalisland.model.Grass;
 import com.aleksei.animalisland.model.Location;
 import com.aleksei.animalisland.model.Rabbit;
 import com.aleksei.animalisland.utils.UnknownAnimalException;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
+
+@Slf4j
 public class IslandServiceImpl implements IslandService {
     private static final AppConfig CONFIG = AppConfig.getAppConfig();
     private final int width = CONFIG.getIslandWidth();
@@ -19,10 +24,14 @@ public class IslandServiceImpl implements IslandService {
 
     @Override
     public void init() {
-        for (int x = 0; x < height; x++) {
-            for (int y = 0; y < width; y++) {
-                Location location = new Location();
+        Location location = new Location();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                log.debug("Create location with axis x = {} ana Y = {}", x, y);
                 island[x][y] = location;
+                int id = location.getId();
+                id++;
+                location.setId(id);
                 addEntityToLocation(location);
 
             }
@@ -32,7 +41,9 @@ public class IslandServiceImpl implements IslandService {
     private void addEntityToLocation(Location location) {
         for (String entityString : AppConfig.getEntityList()) {
             //TODO create entities according maxNumberPerLocation
-            checkAndCreateEntity(entityString, location.getId());
+            int maxNumberPerLocation = ThreadLocalRandom.current().nextInt(CONFIG.getMaxNumberPerLocation(entityString));
+            IntStream.rangeClosed(0, maxNumberPerLocation)
+                            .forEachOrdered(i -> checkAndCreateEntity(entityString, location.getId()));
         }
     }
 

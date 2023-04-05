@@ -4,12 +4,14 @@ import com.aleksei.animalisland.model.Bear;
 import com.aleksei.animalisland.model.Location;
 import com.aleksei.animalisland.repository.BearRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryBearRepository implements BearRepository<Bear> {
     private final Map<Integer, List<Bear>> bearMap = new ConcurrentHashMap<>();
+    private final List<Bear> bears = new ArrayList<>();
 
     @Override
     public void move() {
@@ -23,7 +25,7 @@ public class InMemoryBearRepository implements BearRepository<Bear> {
 
     @Override
     public void create(Bear bear, int locationId) {
-        List<Bear> bears = bearMap.get(locationId);
+//        List<Bear> bears = bearMap.get(locationId);
         bears.add(bear);
         bearMap.put(locationId, bears);
     }

@@ -5,6 +5,6 @@ import com.aleksei.animalisland.model.Grass;
 import com.aleksei.animalisland.model.Location;
 
 public interface GrassService {
-    Grass create(Grass grass, int locationId);
+    void create(Grass grass, int locationId);
 
 }
